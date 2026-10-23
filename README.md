@@ -1,47 +1,80 @@
-# Chong Jun Hao — Interactive Portfolio (2026)
+# CHONG JUN HAO · DARK DESKTOP PORTFOLIO OS
 
-A polished, responsive editorial/creative-desk portfolio built from Chong Jun Hao's October 2026 résumé. Original visual design inspired by the spirit of interactive design portfolios. No React or dependency installation is needed: this is a lightweight static website that works on GitHub Pages for free.
+An original dark interactive portfolio inspired by creative desktop-style websites, built for **GitHub Pages**.
 
-## Features
+**Live URL (after deploying in your existing repo):**
+https://junhao87.github.io/junhao-portfolio/
 
-- Interactive desk-style intro and 3 clickable featured project files.
-- Responsive home, projects, about, work journey, education, recognition and contact sections.
-- Working project filters, accessible project detail dialogs, theme switch, mobile navigation and scroll animations.
-- Print-friendly résumé page at `resume.html` (Print → Save as PDF).
-- Fully illustrative CSS artwork, **not** project screenshots or images from the reference website.
-- GitHub Actions workflow for automatic deploy to GitHub Pages.
+## What's inside
 
-## Preview locally
+- A dark space-themed welcome screen with animated orbiting rings
+- Interactive desktop with animated background and app shortcuts
+- Clickable bottom dock
+- Draggable, closable, minimizable and maximizable app windows (on desktop)
+- Portfolio folder with category filters and **three case studies**: Batik Studio, SCCCI AI Theatre, Nan'ao AI Travel Guide
+- About Me, Experience & Education, Awards, Skills and Contact windows
+- Command-palette app search (Ctrl+K / Cmd+K)
+- Local mock terminal with safe predefined commands (`help`, `projects`, `open about`, etc.)
+- Responsive full-screen windows on mobile
+- Separate dark résumé page, printable to PDF (`resume.html`)
+- GitHub Actions deployment workflow, ready for your existing Pages deployment
 
-Open `index.html` in Chrome or Edge. No install, no server and no build step.
-For an optional local server, open a terminal in this folder and run `python -m http.server 8000`, then visit `http://localhost:8000`.
+### No build tools needed
 
-## Publish on GitHub Pages (Free)
+This version is a static HTML/CSS/JavaScript site with original procedural CSS visuals. It runs without `npm` or Node.js, and all interactive functionality is local in the browser. The Google Font link is optional; the fallback fonts work when offline.
 
-1. Create a **public** repository on GitHub, e.g. `junhao-portfolio`.
-2. Upload **the contents of this folder**, including the hidden `.github` directory and `.nojekyll` file, to the repository root. (Unzip first; do not upload the zip as a single file.)
-3. Ensure the branch is named **main**.
-4. Open repository **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-5. Open the **Actions** tab; the `Deploy Portfolio to GitHub Pages` workflow should deploy automatically after the push. You can also choose **Run workflow** manually.
-6. Browse to `https://YOUR-GITHUB-USERNAME.github.io/junhao-portfolio/`.
+## How to update your existing GitHub Desktop repository (Chinese)
 
-Alternative simpler deploy: Remove the `.github/workflows/deploy.yml` file and choose **Deploy from a branch** → `main` → `/ (root)` in Settings → Pages.
+1. **备份你现有的网页。** 在 GitHub Desktop 使用 `Repository → Show in Explorer`，打开 `junhao-portfolio` 本地目录。建议先另存一份旧版。
+2. 解压 `JunHao_Dark_Desktop_Portfolio_GitHub_Pages.zip`。
+3. 将解压后文件夹**里面的所有文件和文件夹**复制进你 GitHub Desktop 的 `junhao-portfolio` 根目录，并选择覆盖旧版同名文件。
+4. 确认文件结构如下面示例。`index.html` 必须位于根目录，不能被额外的外层文件夹包住。
+5. 回到 GitHub Desktop，填写 Summary（例如 `Upgrade dark interactive desktop portfolio`），点击 **Commit to main**。
+6. 点击 **Push origin**。
+7. 在 GitHub 网站中保持 `Settings → Pages → Build and deployment → Source: GitHub Actions`。
+8. 去 `Actions` 查看名为 `Deploy Portfolio to GitHub Pages` 的任务是否绿色成功。
+9. 打开 https://junhao87.github.io/junhao-portfolio/ ，用 Ctrl+Shift+R 强制刷新网页。
 
-### Use the shortest professional URL
+```text
+junhao-portfolio/
+  index.html
+  resume.html
+  README.md
+  .nojekyll
+  assets/
+    styles.css
+    main.js
+    favicon.svg
+  .github/
+    workflows/
+      deploy.yml
+```
 
-If you name the repository `YOUR-GITHUB-USERNAME.github.io` (exactly), your website URL will be `https://YOUR-GITHUB-USERNAME.github.io/`.
+> Windows 文件资源管理器能看到隐藏的 `.github` 目录。如果没有看到，需要开启显示隐藏项目。请确保这个目录也复制过去。
 
-## Personalise before making public
+## Test locally
 
-- Main text: edit `index.html`, particularly the hero, project descriptions and achievements.
-- Résumé: edit `resume.html`. The email currently matches the supplied 2026 résumé; the private phone number is intentionally omitted from the website.
-- CSS colors, layouts and illustrations: `assets/styles.css`.
-- Project case-study dialog text: `assets/main.js`, object `cases`.
-- All graphics are CSS illustrations and should eventually be replaced or supplemented with **real** project screenshots when you have permission to show them.
-- The source résumé PDF could not be included as a raw file, so the website links to the built-in HTML résumé instead. The print button can save it as a PDF.
-- No GitHub profile link was inserted: add only a verified personal account URL.
-- Check that all award/project details and current job dates still match your latest information before publishing.
+- Double-click `index.html` to preview in a browser. OR
+- In VS Code open the folder and use Live Server.
 
-## Future additions
+The page uses relative asset URLs, so it works from a GitHub Pages subpath like `/junhao-portfolio/`.
 
-Replace illustrative art with real screenshots or short optimised videos. Add case-study URLs, verified GitHub project links, project demos and an original headshot if desired. Avoid publishing client-confidential SCCCI assets and access credentials. GitHub Pages is **static hosting**; it cannot run Flask or database servers.
+## Editing your information
+
+- `index.html`: headings, About text, timeline, awards and contact content.
+- `assets/main.js`: case-study descriptions and UI behaviour, including Terminal commands.
+- `assets/styles.css`: colors, typography, layout and responsiveness. Edit the variables in `:root` for the dark palette.
+- `resume.html`: standalone résumé information and print styles.
+
+## Before sharing publicly
+
+- Verify the résumé wording and contact details.
+- Replace the illustrated project visuals with your own screenshots/media if desired.
+- Add only public client/project material that you're allowed to share.
+- This website doesn't contain your original uploaded résumé PDF; `resume.html` is a web recreation based on the text of your earlier résumé.
+
+## Credits / scope
+
+This is **not a copy** of another creator's assets or code. The visuals and UI are original, using desktop-OS interaction conventions. The glowing orb/orbits are implemented with CSS 3D effects and a small starfield canvas — it is not an imported 3D model, nor does it use Three.js.
+
+© Chong Jun Hao, 2026.

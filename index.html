@@ -1,101 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5f1e9">
-  <meta name="description" content="Chong Jun Hao — AI graduate and junior software developer in Malaysia. Selected AI, interactive technology and design projects.">
-  <meta property="og:title" content="Chong Jun Hao — Creative Technology Portfolio">
-  <meta property="og:description" content="Ideas, interfaces & intelligent systems. Explore my work in AI and digital experiences.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07090f" />
+  <meta name="description" content="Chong Jun Hao — an AI graduate and creative technologist. Explore an interactive desktop of selected projects, experience and ideas." />
+  <meta property="og:title" content="Chong Jun Hao — Interactive Portfolio OS" />
+  <meta property="og:description" content="A portfolio you can explore. AI, digital experiences, and creative technology." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
   <script defer src="assets/main.js"></script>
-  <title>Chong Jun Hao — Creative Technology Portfolio</title>
+  <title>Chong Jun Hao — Portfolio OS</title>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="grain" aria-hidden="true"></div>
-  <div id="intro" class="intro" role="dialog" aria-modal="true" aria-label="Welcome to Jun Hao's portfolio">
-    <div class="intro-top"><span class="mini-mark">JH<span class="asterisk">✳</span></span><span>PERSONAL ARCHIVE · EST. 2026</span></div>
-    <div class="intro-stage" aria-hidden="true">
-      <div class="intro-ruler">01 · IDEAS<br>02 · EXPERIMENTS<br>03 · THINGS I BUILD</div>
-      <div class="intro-sheet intro-sheet-back"><span class="sheet-edge">THE CREATIVE FILES</span><span class="sheet-small">A collection of curious things.</span></div>
-      <div class="intro-sheet intro-sheet-front"><span class="sheet-kicker">PORTFOLIO / 2026</span><span class="intro-giant">HELLO<span class="giant-dot">.</span></span><span class="sheet-signature">I’m Jun Hao.<br>Nice to meet you.</span><div class="intro-smiley">:)</div></div>
-      <div class="intro-sticker">made with<br><strong>curiosity ✳</strong></div>
-      <div class="intro-clip"></div>
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5.5A2.5 2.5 0 0 1 5.5 3H10l2.4 2.7H18.5A2.5 2.5 0 0 1 21 8.2v10.3a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5V7Z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8.4 12.1-1.4 8 5-2.4 5 2.4-1.4-8"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4.5" width="20" height="15" rx="3"/><path d="m3 6 9 7 9-7"/></symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="3"/><path d="m6 8 4 4-4 4M12 17h6"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 2h8l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v6h5M8 13h8M8 17h6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M9 5h10v10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+  <symbol id="i-max" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 20c-4.4 1.4-4.4-2.5-6-3m12 6v-3.8c0-1.1.2-1.5-.5-2 2.4-.2 5-1.2 5-5.3a4.1 4.1 0 0 0-1.1-2.9 3.8 3.8 0 0 0-.1-2.9S16.5 6 14.7 7.8a13 13 0 0 0-5.4 0C7.5 6 5.7 6.1 5.7 6.1a3.8 3.8 0 0 0-.1 2.9 4.1 4.1 0 0 0-1.1 2.9c0 4.1 2.6 5.1 5 5.3-.7.5-.5.9-.5 2V23"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2 14.5 9.5 22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M10 2h4l.6 2.5 2.4 1 2.2-1.3 2.8 2.8-1.3 2.2 1 2.4L24 12v0l-2.3.6-1 2.4 1.3 2.2-2.8 2.8-2.2-1.3-2.4 1L14 22h-4l-.6-2.3-2.4-1-2.2 1.3L2 17.2 3.3 15l-1-2.4L0 12l2.3-.6 1-2.4L2 6.8 4.8 4l2.2 1.3 2.4-1Z"/><circle cx="12" cy="12" r="3"/></symbol>
+</svg>
+
+<div class="boot" id="boot" role="dialog" aria-label="Welcome screen" aria-modal="true">
+  <div class="boot-grid"></div>
+  <div class="boot-top"><span class="wordmark"><span class="wordmark-icon">JH</span> / CREATIVE SYSTEMS</span><span>PORTFOLIO OS <i class="online-dot"></i> 2026</span></div>
+  <div class="boot-center">
+    <div class="boot-overline"><span class="little-line"></span> WELCOME TO MY UNIVERSE <span class="little-line"></span></div>
+    <div class="boot-emblem"><div class="emblem-ring a"></div><div class="emblem-ring b"></div><div class="emblem-ring c"></div><span>JH<span class="emblem-plus">✳</span></span></div>
+    <div class="boot-title">Design. Code.<br><em>Something more.</em></div>
+    <p>Not just a portfolio. A collection of ideas, experiments and things I love building.</p>
+    <button class="enter-button" id="enterButton" type="button">ENTER MY DESKTOP <span>↗</span></button>
+    <div class="boot-note">BEST EXPLORED WITH CURIOSITY <span>✳</span> WORKS ON MOBILE TOO</div>
+  </div>
+  <div class="boot-bottom"><span>© 2026 CHONG JUN HAO</span><span>SCROLLING IS OVERRATED. EXPLORING IS BETTER.</span><span>EST. JOHOR BAHRU, MY</span></div>
+</div>
+
+<div class="os" id="os">
+  <div class="os-wallpaper"><div class="grid-layer"></div><div class="radial-layer"></div><div class="noise-layer"></div><canvas id="stars" aria-hidden="true"></canvas></div>
+  <header class="menubar">
+    <div class="menubar-left"><button class="os-logo" type="button" data-app="about" aria-label="About Jun Hao">JH<span>✳</span></button><span class="menu-separator"></span><button class="menubar-item" data-app="projects">Portfolio</button><button class="menubar-item" data-app="projects">Projects</button><button class="menubar-item hide-xs" data-app="experience">Experience</button><button class="menubar-item hide-xs" data-app="contact">Contact</button></div>
+    <div class="menubar-right"><span class="menu-available"><i></i> OPEN TO OPPORTUNITIES</span><button class="icon-only top-search" data-action="search" aria-label="Search apps"><svg><use href="#i-search"/></svg></button><span class="menubar-clock" id="clock">FRI 23 OCT · 22:45</span><span class="mini-avatar" title="Chong Jun Hao">JH</span></div>
+  </header>
+
+  <main class="desktop" aria-label="Interactive portfolio desktop">
+    <div class="desktop-stage" id="desktopStage">
+      <div class="stage-copy"><div class="stage-kicker"><span class="kicker-square"></span> HELLO, WORLD. I'M</div><div class="stage-name">CHONG<br><span>JUN HAO<span class="starring">✳</span></span></div><h1>Creating at the intersection<br>of <em>AI, design & development.</em></h1><p>AI graduate & junior software developer crafting thoughtful, intelligent digital experiences.</p><div class="stage-buttons"><button class="button-primary" data-app="projects">Explore my work <svg><use href="#i-arrow"/></svg></button><button class="button-secondary" data-app="about">More about me <svg><use href="#i-chevron"/></svg></button></div></div>
+      <div class="scene" aria-hidden="true"><div class="scene-light"></div><div class="scene-orbit orbit-outer"></div><div class="scene-orbit orbit-inner"></div><div class="scene-orbit orbit-diagonal"></div><div class="orb-shadow"></div><div class="scene-orb"><div class="orb-inner"></div><div class="orb-sheen"></div><div class="orb-trace trace-one"></div><div class="orb-trace trace-two"></div></div><div class="scene-corner scene-corner-one">[ AI × CREATIVE TECH ]</div><div class="scene-corner scene-corner-two">↗ 2026 / LAB.01</div></div>
+      <div class="stage-foot"><span>01 — SELECTED PORTFOLIO</span><span class="stage-foot-middle">A LITTLE LOGIC. A LOT OF CURIOSITY.</span><button data-app="projects">OPEN WORK FOLDER <span>↗</span></button></div>
     </div>
-    <div class="intro-bottom"><div><span class="intro-label">A PERSONAL INTRODUCTION</span><p>Somewhere between logic<br>and a little bit of magic.</p></div><button class="pill-btn intro-enter" id="enterSite" type="button">Explore my world <span aria-hidden="true">↗</span></button><span class="intro-index">SCROLL, CLICK & EXPLORE</span></div>
+    <div class="desktop-icons" aria-label="Desktop apps">
+      <button class="desktop-shortcut" data-app="projects"><span class="shortcut-pictogram gradient-violet"><svg><use href="#i-folder"/></svg></span><span>My Work</span></button>
+      <button class="desktop-shortcut" data-app="about"><span class="shortcut-pictogram gradient-blue"><svg><use href="#i-user"/></svg></span><span>About Me</span></button>
+      <button class="desktop-shortcut" data-app="experience"><span class="shortcut-pictogram gradient-gold"><svg><use href="#i-code"/></svg></span><span>My Journey</span></button>
+      <button class="desktop-shortcut" data-app="awards"><span class="shortcut-pictogram gradient-pink"><svg><use href="#i-award"/></svg></span><span>Highlights</span></button>
+      <button class="desktop-shortcut" data-app="terminal"><span class="shortcut-pictogram gradient-mono"><svg><use href="#i-terminal"/></svg></span><span>Terminal</span></button>
+    </div>
+    <div class="desktop-meta"><span>CHONG JUN HAO</span><span>PERSONAL PORTFOLIO / 2026</span><span>DESIGNED TO BE EXPLORED ↗</span></div>
+  </main>
+
+  <div class="window-layer" id="windowLayer">
+    <!-- projects window -->
+    <section class="app-window projects-window" id="win-projects" data-window="projects" role="dialog" aria-labelledby="title-projects" aria-modal="false" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="projects" aria-label="Close projects"></button><button class="traffic-min" data-min="projects" aria-label="Minimize projects"></button><button class="traffic-max" data-max="projects" aria-label="Maximize projects"></button></div><span id="title-projects" class="window-heading">portfolio / selected-work</span><span class="window-tail">✳ 03 FILES</span></header>
+      <div class="projects-browser">
+        <aside class="browser-side"><div class="sidebar-brand">JH<span>✳</span><small>WORK ARCHIVE</small></div><span class="sidebar-caption">LIBRARY</span><div class="browser-filters"><button class="browser-filter active" data-project-filter="all"><svg><use href="#i-grid"/></svg> All projects <span>03</span></button><button class="browser-filter" data-project-filter="ai"><svg><use href="#i-spark"/></svg> AI & Culture</button><button class="browser-filter" data-project-filter="interactive"><svg><use href="#i-code"/></svg> Interactive</button></div><div class="side-tip"><span>✳ A NOTE</span><p>Each file is a little story about the things I've made.</p></div></aside>
+        <div class="browser-main" id="browserMain"><div class="browser-toolbar"><div class="crumb">HOME <span>/</span> PORTFOLIO <span>/</span> <strong>SELECTED WORK</strong></div><span class="browser-view">▦ &nbsp; 03 ITEMS</span></div><div class="browser-hero"><div><span class="micro-label">THE SELECTED FILES · VOL. 01</span><h2>Projects worth<br><em>opening.</em></h2><p>A curated selection of creative AI, interaction design and digital experiences.</p></div><span class="browser-hero-star">✳</span></div>
+          <div class="project-grid" id="projectGrid">
+            <button class="project-tile" data-project="batik" data-category="ai" aria-label="Read Batik Studio case study"><div class="tile-art art-batik"><span class="art-toplabel">01 / CULTURAL COMPUTING</span><div class="batik-bloom"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><strong>BATIK<br>STUDIO</strong><span class="art-bottomlabel">TRADITION REIMAGINED ↗</span></div><div class="tile-caption"><div><span>AI GENERATION · 3D</span><h3>Batik Studio</h3><p>Preserving creative heritage through emerging technology.</p></div><span class="tile-arrow">↗</span></div></button>
+            <button class="project-tile" data-project="sccci" data-category="ai interactive" aria-label="Read SCCCI AI Theatre case study"><div class="tile-art art-sccci"><span class="art-toplabel">02 / CLIENT EXPERIENCE</span><div class="sccci-disc"><div class="disc-ring"></div><div class="disc-ring ring-b"></div><div class="disc-core">✳</div></div><strong>AI<br>THEATRE</strong><span class="art-bottomlabel">STORIES THAT RESPOND ↗</span></div><div class="tile-caption"><div><span>AI · INTERACTIVE</span><h3>SCCCI AI Theatre</h3><p>Making cultural storytelling feel like a conversation.</p></div><span class="tile-arrow">↗</span></div></button>
+            <button class="project-tile" data-project="nanao" data-category="ai interactive" aria-label="Read Nan'ao Travel Guide case study"><div class="tile-art art-nanao"><span class="art-toplabel">03 / TRAVEL EXPERIENCE</span><div class="nanao-route"><i></i><i></i><i></i><b>✦</b><b>✦</b></div><strong>FEEL THE<br>JOURNEY.</strong><span class="art-bottomlabel">NAN'AO, CHINA ↗</span></div><div class="tile-caption"><div><span>AI CONCEPT · UX</span><h3>Nan'ao AI Travel Guide</h3><p>An emotion-led approach to exploring places and stories.</p></div><span class="tile-arrow">↗</span></div></button>
+          </div>
+          <p class="browser-disclaimer">Visuals are original illustrations, not screenshots from the final systems. Click a project to read the case study.</p>
+          <div class="project-detail" id="projectDetail" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="app-window content-window about-window" id="win-about" data-window="about" role="dialog" aria-modal="false" aria-labelledby="title-about" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="about" aria-label="Close about"></button><button class="traffic-min" data-min="about" aria-label="Minimize about"></button><button class="traffic-max" data-max="about" aria-label="Maximize about"></button></div><span id="title-about" class="window-heading">about-me / profile.txt</span><span class="window-tail">01 / PROFILE</span></header>
+      <div class="window-scroll about-content"><div class="profile-top"><div class="profile-portrait"><div class="portrait-orbit"></div><strong>JH<span>✳</span></strong><small>CREATIVE BY NATURE.</small></div><div class="profile-head"><span class="micro-label"><i class="online-dot"></i> OPEN TO WHAT'S NEXT</span><h2>A little about<br><em>the human.</em></h2><p>Hi, I'm Jun Hao. I like finding the human side of technology — building useful tools, intuitive experiences and ideas that make people curious.</p><div class="small-chips"><span>JOHOR BAHRU, MY</span><span>AI GRADUATE</span><span>DEVELOPER × DESIGNER</span></div></div></div><div class="profile-lower"><div><span class="micro-label">MY APPROACH</span><h3>Think creatively.<br>Build thoughtfully.</h3></div><p>My background moves between interface design, on-site technical work and AI-powered interactive systems. From testing conversational responses for live exhibitions to developing AI concepts, I enjoy the entire process of turning an idea into an experience.</p></div><div class="stat-row"><div><strong>3.83<small>/ 4.00</small></strong><span>Degree CGPA</span></div><div><strong>1<sup>st</sup></strong><span>Class Honours</span></div><div><strong>2026</strong><span>Graduated</span></div></div><button class="inline-action" data-app="experience">Follow my journey <svg><use href="#i-arrow"/></svg></button></div>
+    </section>
+
+    <section class="app-window content-window experience-window" id="win-experience" data-window="experience" role="dialog" aria-modal="false" aria-labelledby="title-experience" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="experience" aria-label="Close journey"></button><button class="traffic-min" data-min="experience" aria-label="Minimize journey"></button><button class="traffic-max" data-max="experience" aria-label="Maximize journey"></button></div><span class="window-heading" id="title-experience">journey / experience.timeline</span><span class="window-tail">06 ENTRIES</span></header>
+      <div class="window-scroll experience-content"><span class="micro-label">CHAPTER 02 / MY PATH</span><h2>Where ideas<br><em>met reality.</em></h2><p class="lede">A journey through design, engineering and hands-on experimentation.</p><div class="experience-columns"><div class="experience-column"><h3><span class="exp-icon">↗</span> EXPERIENCE</h3><div class="exp-item"><time>2026 — PRESENT</time><h4>Freelance AI Project Assistant & Junior Programmer</h4><strong>Digital Magic Studio</strong><p>AI response flows, interaction logic, testing, content structure and client deliverables for SCCCI AI Theatre.</p></div><div class="exp-item"><time>DEC 2025 — APR 2026</time><h4>Junior Onsite Technician & Programmer Intern</h4><strong>Digital Magic Studio</strong><p>Onsite setup, interactive prototypes, technical troubleshooting and client-facing deployment support.</p></div><div class="exp-item"><time>SEP 2023 — APR 2024</time><h4>UI/UX Designer Intern</h4><strong>My Serve Solutions</strong><p>Interface layouts, visual systems and collaboration with software developers.</p></div></div><div class="experience-column"><h3><span class="exp-icon">✦</span> EDUCATION</h3><div class="exp-item"><time>2024 — 2026</time><h4>BSc (Hons) Information Systems in AI</h4><strong>Raffles University</strong><p>First Class Honours · Dean's List · CGPA 3.83 / 4.00</p></div><div class="exp-item"><time>2021 — 2024</time><h4>Diploma in Information Technology</h4><strong>Kolej MDIS Malaysia</strong><p>CGPA 3.84 / 4.00 · High Achiever Award · Outstanding Student</p></div><button class="inline-action" data-app="awards">View awards & recognition <svg><use href="#i-arrow"/></svg></button></div></div></div>
+    </section>
+
+    <section class="app-window content-window awards-window" id="win-awards" data-window="awards" role="dialog" aria-modal="false" aria-labelledby="title-awards" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="awards" aria-label="Close highlights"></button><button class="traffic-min" data-min="awards" aria-label="Minimize highlights"></button><button class="traffic-max" data-max="awards" aria-label="Maximize highlights"></button></div><span class="window-heading" id="title-awards">highlights / recognition.list</span><span class="window-tail">ACHIEVEMENTS</span></header>
+      <div class="window-scroll awards-content"><div class="awards-heading"><div><span class="micro-label">A FEW MILESTONES ALONG THE WAY</span><h2>Nice things<br><em>happened.</em></h2></div><div class="award-burst">✳</div></div><div class="achievement-list"><div class="achievement"><span>01</span><div><strong>Gold Award — Batik Studio</strong><small>DIGITEX, Universiti Teknologi Malaysia (UTM)</small></div><time>2026</time></div><div class="achievement"><span>02</span><div><strong>Silver Award — Mindscape Travel</strong><small>DIGITEX, UTM</small></div><time>2026</time></div><div class="achievement"><span>03</span><div><strong>Second Prize — Rural Cultural & Creative Track</strong><small>Nan'ao County Rural Operator Competition, China</small></div><time>2025</time></div><div class="achievement"><span>04</span><div><strong>Silver Winner — Branding for AI in Branding</strong><small>Indigo Design Award</small></div><time>2026</time></div><div class="achievement"><span>05</span><div><strong>Merit Award — Idea: Digital Experience</strong><small>Kancil Awards</small></div><time>2025</time></div><div class="achievement"><span>06</span><div><strong>Oral Presenter — AI Batik & 3D Garment Visualisation</strong><small>DEIC International Conference</small></div><time>2026</time></div></div></div>
+    </section>
+
+    <section class="app-window content-window skills-window" id="win-skills" data-window="skills" role="dialog" aria-modal="false" aria-labelledby="title-skills" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="skills" aria-label="Close skills"></button><button class="traffic-min" data-min="skills" aria-label="Minimize skills"></button><button class="traffic-max" data-max="skills" aria-label="Maximize skills"></button></div><span class="window-heading" id="title-skills">toolkit / skills.config</span><span class="window-tail">MY TOOLBOX</span></header>
+      <div class="window-scroll skills-content"><span class="micro-label">TOOLS / THINGS I WORK WITH</span><h2>Tools of<br><em>the trade.</em></h2><p class="lede">A toolkit shaped by projects, curiosity, and a lot of learning.</p><div class="skill-sections"><div class="skill-section"><span>01 / DEVELOPMENT</span><div class="skill-pills"><span>Python</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>PHP</span><span>Web Applications</span></div></div><div class="skill-section"><span>02 / INTELLIGENCE</span><div class="skill-pills"><span>Machine Learning</span><span>Computer Vision</span><span>Object Detection</span><span>NLP</span><span>Model Evaluation</span><span>Data Processing</span></div></div><div class="skill-section"><span>03 / DESIGN & SYSTEMS</span><div class="skill-pills"><span>UI / UX Design</span><span>Interactive Experiences</span><span>MySQL</span><span>Google Colab</span><span>VS Code</span><span>Prototyping</span></div></div></div></div>
+    </section>
+
+    <section class="app-window content-window contact-window" id="win-contact" data-window="contact" role="dialog" aria-modal="false" aria-labelledby="title-contact" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="contact" aria-label="Close contact"></button><button class="traffic-min" data-min="contact" aria-label="Minimize contact"></button><button class="traffic-max" data-max="contact" aria-label="Maximize contact"></button></div><span class="window-heading" id="title-contact">connect / say-hello.mail</span><span class="window-tail"><i class="online-dot"></i> OPEN INBOX</span></header>
+      <div class="window-scroll contact-content"><div class="contact-visual">✳</div><span class="micro-label">CHAPTER 05 / GET IN TOUCH</span><h2>Great things<br>start with <em>hello.</em></h2><p>Have a project, an opportunity, or just a good idea? I'd love to hear about it.</p><a class="contact-address" href="mailto:junhaochong5@gmail.com">junhaochong5@gmail.com <svg><use href="#i-arrow"/></svg></a><div class="contact-buttons"><a class="button-primary" href="mailto:junhaochong5@gmail.com">Write an email <svg><use href="#i-arrow"/></svg></a><button class="button-secondary" id="copyEmail" type="button">Copy email address <span>⧉</span></button></div><div class="contact-footer">BASED IN JOHOR BAHRU, MALAYSIA <span>✳</span> OPEN TO COLLABORATION</div></div>
+    </section>
+
+    <section class="app-window terminal-window" id="win-terminal" data-window="terminal" role="dialog" aria-modal="false" aria-labelledby="title-terminal" hidden>
+      <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="terminal" aria-label="Close terminal"></button><button class="traffic-min" data-min="terminal" aria-label="Minimize terminal"></button><button class="traffic-max" data-max="terminal" aria-label="Maximize terminal"></button></div><span class="window-heading" id="title-terminal">junhao@portfolio: ~</span><span class="window-tail">ZSH — INTERACTIVE</span></header>
+      <div class="terminal-body" id="terminalOutput" aria-live="polite"><div class="term-purple">JunHao Portfolio Terminal [Version 2.0.26]</div><div>Type <span class="term-aqua">help</span> to see what you can do.</div><div class="term-spacer"></div></div><form class="terminal-inputrow" id="terminalForm"><label for="terminalInput">junhao@portfolio <span>~ %</span></label><input id="terminalInput" name="cmd" spellcheck="false" autocomplete="off" aria-label="Terminal command" /></form>
+    </section>
   </div>
 
-  <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Back to top">JH<span>✳</span><small>creative technology</small></a>
-    <nav class="desktop-nav" aria-label="Primary navigation">
-      <a href="#projects">Work</a><a href="#about">About</a><a href="#journey">Journey</a><a href="#recognition">Recognition</a>
-    </nav>
-    <div class="header-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme" title="Switch color theme">◐</button><a class="contact-pill" href="mailto:junhaochong5@gmail.com">Let's talk <span>↗</span></a><button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open navigation"><span></span><span></span></button></div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden><a href="#projects">Work</a><a href="#about">About</a><a href="#journey">Journey</a><a href="#recognition">Recognition</a><a href="#contact">Contact</a></nav>
-  </header>
-  <main id="main">
-    <section class="hero section-shell" aria-labelledby="heroTitle">
-      <div class="hero-topline"><span><span class="availability-dot"></span> AVAILABLE FOR OPPORTUNITIES</span><span>BASED IN JOHOR BAHRU, MALAYSIA <span class="tiny-arrow">↗</span></span></div>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow reveal">HI THERE, I’M CHONG JUN HAO <span class="wavy-icon">〰</span></p>
-          <h1 id="heroTitle" class="reveal">Making <em>ideas</em><br>feel <span class="highlight-word">alive<span class="doodle-star">✳</span></span><span class="period">.</span></h1>
-          <p class="hero-lead reveal">An AI graduate & junior software developer blending technology, thoughtful design and interactive experiences.</p>
-          <div class="hero-buttons reveal"><a href="#projects" class="pill-btn primary">Explore selected work <span>↗</span></a><a href="resume.html" class="text-link">View my résumé <span>↗</span></a></div>
-          <div class="hero-side-note reveal"><span class="tiny-label">CURRENTLY INTO</span><p>Intelligent experiences, creative coding,<br>and the moments in between.</p></div>
-        </div>
-        <div class="hero-art reveal" aria-label="Illustrated work desk with three interactive featured project cards">
-          <div class="orbit-dash orbit-one"></div><div class="orbit-dash orbit-two"></div>
-          <div class="art-stamp">IDEAS IN PROGRESS <span>↗</span></div>
-          <div class="desk-window">
-            <div class="window-heading"><span class="window-dots"><i></i><i></i><i></i></span>junhao / creative-lab <span>⋯</span></div>
-            <div class="window-body"><span class="window-badge">SELECTED FILE NO. <span id="fileNum">01</span></span><div class="project-art-label" id="featuredLabel">BATIK <span>STUDIO</span></div><div class="batik-art" id="featuredArt"><span class="batik-shape b1"></span><span class="batik-shape b2"></span><span class="batik-shape b3"></span><span class="batik-shape b4"></span><span class="batik-shape b5"></span><span class="batik-shape b6"></span></div><div class="window-footer"><span id="featuredType">AI GENERATION · 3D VISUALISATION</span><span>↗</span></div></div>
-          </div>
-          <div class="sticky-note">a little<br>curiosity<br>goes a long way <span>✴</span></div>
-          <div class="tiny-flower">✻</div>
-          <div class="project-picker" role="group" aria-label="Explore featured projects"><button type="button" class="project-select active" data-feature="0" aria-pressed="true">01 <span>Batik</span></button><button type="button" class="project-select" data-feature="1" aria-pressed="false">02 <span>SCCCI</span></button><button type="button" class="project-select" data-feature="2" aria-pressed="false">03 <span>Nan’ao</span></button></div>
-          <div class="art-caption">↳ CLICK TO SWITCH THE FILE</div>
-        </div>
-      </div>
-      <div class="hero-bottom"><span>PORTFOLIO — 2026</span><span>DESIGN MINDED. TECH DRIVEN.</span><a href="#projects" aria-label="Scroll to projects">SCROLL TO EXPLORE ↓</a></div>
-    </section>
-
-    <div class="ticker" aria-hidden="true"><div class="ticker-track">IDEAS <span>✳</span> CODE <span>✳</span> DESIGN <span>✳</span> INTELLIGENCE <span>✳</span> IMAGINATION <span>✳</span> IDEAS <span>✳</span> CODE <span>✳</span> DESIGN <span>✳</span> INTELLIGENCE <span>✳</span> IMAGINATION <span>✳</span></div></div>
-
-    <section class="section-shell projects-section" id="projects" aria-labelledby="projectsTitle">
-      <div class="section-heading reveal"><div><span class="section-number">01 / THE GOOD STUFF</span><h2 id="projectsTitle">Selected <em>work.</em></h2></div><p>A few projects where creative thinking meets real-world technology. Each one has a story.</p></div>
-      <div class="filter-bar reveal" role="group" aria-label="Filter projects"><button class="filter active" type="button" data-filter="all" aria-pressed="true">All projects <span>03</span></button><button class="filter" type="button" data-filter="ai" aria-pressed="false">AI & creative tech</button><button class="filter" type="button" data-filter="interactive" aria-pressed="false">Interactive</button></div>
-      <div class="projects-grid">
-        <article class="project-card project-card-large reveal" data-category="ai" data-project="batik" tabindex="0" role="button" aria-label="Open Batik Studio case study">
-          <div class="project-visual visual-batik"><div class="visual-gridlines"></div><span class="visual-index">FEATURED PROJECT / 01</span><div class="batik-poster"><span class="poster-top">CRAFT × COMPUTATION</span><div class="batik-rosette"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><strong>BATIK<br>STUDIO</strong><span class="poster-bottom">TRADITION, REIMAGINED.</span></div><span class="visual-sticker">AWARD<br>WINNING ✷</span></div>
-          <div class="project-info"><div><span class="project-type">AI / CULTURAL TECHNOLOGY / 2026</span><h3>Batik Studio</h3><p>Exploring cultural preservation through AI-generated batik patterns and 3D garment visualisation.</p><div class="tags"><span>AI Generation</span><span>3D Visualisation</span><span>UX</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></div>
-        </article>
-        <article class="project-card reveal" data-category="ai interactive" data-project="sccci" tabindex="0" role="button" aria-label="Open SCCCI AI Theatre case study">
-          <div class="project-visual visual-sccci"><span class="visual-index">CLIENT PROJECT / 02</span><div class="sccci-orb"><div class="inner-orb"></div><div class="sound-wave wave1"></div><div class="sound-wave wave2"></div><div class="sound-wave wave3"></div></div><div class="sccci-card"><span>AI THEATRE</span><strong>Stories that<br><em>respond.</em></strong><small>SINGAPORE · INTERACTIVE AI</small></div></div>
-          <div class="project-info"><div><span class="project-type">AI / INTERACTIVE EXPERIENCE / 2026</span><h3>SCCCI AI Theatre</h3><p>Creating a more engaging storytelling experience with conversational AI interactions.</p><div class="tags"><span>AI Response Flow</span><span>Interaction</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></div>
-        </article>
-        <article class="project-card reveal" data-category="ai interactive" data-project="nanao" tabindex="0" role="button" aria-label="Open Nan'ao AI Travel Guide case study">
-          <div class="project-visual visual-nanao"><span class="visual-index">CONCEPT & INNOVATION / 03</span><div class="map-line map-one"></div><div class="map-line map-two"></div><div class="map-line map-three"></div><div class="map-pin pin1">✦</div><div class="map-pin pin2">✦</div><div class="map-pin pin3">✦</div><div class="travel-ticket"><small>YOUR JOURNEY, YOUR FEELINGS</small><strong>GO <em>somewhere.</em></strong><div class="ticket-rule"></div><span>AN EMOTIONAL AI TRAVEL GUIDE</span><span class="ticket-star">✳</span></div></div>
-          <div class="project-info"><div><span class="project-type">AI / TRAVEL EXPERIENCES / 2025</span><h3>Nan’ao AI Travel Guide</h3><p>Reimagining tourism through emotion-aware journeys, cultural stories and AI-guided discovery.</p><div class="tags"><span>UX Strategy</span><span>AI Concept</span><span>Storytelling</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></div>
-        </article>
-      </div>
-      <p class="project-footnote">✳ Project artwork is an original illustrative mockup, not a screenshot of a deployed product.</p>
-    </section>
-
-    <section class="about-section" id="about" aria-labelledby="aboutTitle"><div class="section-shell about-grid"><div class="about-aside reveal"><span class="section-number">02 / THE PERSON BEHIND THE PIXELS</span><div class="about-portrait"><span class="portrait-top">PERSONAL NOTES / #001</span><span class="portrait-big">JH<span>✳</span></span><span class="portrait-line">CURIOUS BY DESIGN.</span><div class="portrait-orbit">✧</div><span class="portrait-foot">ALWAYS LEARNING →</span></div><span class="handwritten-note">more than just code ↗</span></div><div class="about-copy reveal"><h2 id="aboutTitle">A little <em>about me.</em></h2><p class="about-opening">I like building things that make complex ideas feel simple, intuitive and a little more human.</p><p>I'm an Artificial Intelligence graduate from Raffles University, with a foundation in UI/UX design and hands-on experience developing digital and AI-powered interactive experiences.</p><p>From designing interfaces to testing AI response flows for client-facing exhibitions, I enjoy working at the intersection of <strong>technology, design and meaningful storytelling.</strong></p><div class="about-stats"><div><strong>3.83<span>/4.0</span></strong><small>Degree CGPA</small></div><div><strong>2026</strong><small>First Class Honours</small></div><div><strong>3+</strong><small>Years since first industry role</small></div></div><a href="resume.html" class="text-link">The full story — my résumé <span>↗</span></a></div></div></section>
-
-    <section class="section-shell journey-section" id="journey" aria-labelledby="journeyTitle"><div class="section-heading reveal"><div><span class="section-number">03 / THE PATH SO FAR</span><h2 id="journeyTitle">My <em>journey.</em></h2></div><p>A mix of design, development and practical experiments that helped shape how I work.</p></div><div class="journey-grid"><div class="journey-column reveal"><h3>Work experience <span>↘</span></h3><div class="timeline"><article class="timeline-item"><time>2026 — PRESENT</time><h4>Freelance AI Project Assistant & Junior Programmer</h4><span>Digital Magic Studio Sdn Bhd</span><p>Supported AI response flow, interaction logic, testing, content design and client deliverables for the SCCCI AI Theatre programme.</p></article><article class="timeline-item"><time>DEC 2025 — APR 2026</time><h4>Junior Onsite Technician & Programmer Intern</h4><span>Digital Magic Studio Sdn Bhd</span><p>Assisted with technical setup, programming prototypes, system testing and client-facing interactive deployments.</p></article><article class="timeline-item"><time>SEP 2023 — APR 2024</time><h4>UI/UX Designer Intern</h4><span>My Serve Solutions</span><p>Designed user-focused interfaces and collaborated with developers to connect visual design with product requirements.</p></article></div></div><div class="journey-column reveal"><h3>Education <span>↘</span></h3><div class="timeline"><article class="timeline-item"><time>2024 — 2026</time><h4>BSc (Hons) Information Systems in Artificial Intelligence</h4><span>Raffles University</span><p>First Class Honours Standing · Dean’s List · CGPA 3.83 / 4.00</p></article><article class="timeline-item"><time>2021 — 2024</time><h4>Diploma in Information Technology</h4><span>Kolej MDIS Malaysia</span><p>CGPA 3.84 / 4.00 · High Achiever Award · Outstanding Student</p></article></div><div class="tools-block"><span class="tiny-label">MY EVER-GROWING TOOLKIT</span><div class="skill-cloud"><span>Python</span><span>JavaScript</span><span>Flask</span><span>HTML & CSS</span><span>Computer Vision</span><span>NLP</span><span>AI Model Training</span><span>MySQL</span><span>UI/UX Design</span><span>Google Colab</span></div></div></div></div></section>
-
-    <section class="recognition-section" id="recognition" aria-labelledby="recognitionTitle"><div class="section-shell"><div class="section-heading reveal"><div><span class="section-number">04 / THE LITTLE MILESTONES</span><h2 id="recognitionTitle">Nice things <em>along the way.</em></h2></div><div class="award-scribble">hard work, happy accidents<br>and lots of learning ✳</div></div><div class="awards-list reveal"><div class="award-row"><span>01</span><strong>Gold Award — Batik Studio</strong><span>DIGITEX, UTM</span><time>2026</time><span class="award-arrow">↗</span></div><div class="award-row"><span>02</span><strong>Silver Award — Mindscape Travel</strong><span>DIGITEX, UTM</span><time>2026</time><span class="award-arrow">↗</span></div><div class="award-row"><span>03</span><strong>Second Prize — Rural Cultural & Creative Track</strong><span>Nan’ao County, China</span><time>2025</time><span class="award-arrow">↗</span></div><div class="award-row"><span>04</span><strong>Silver Winner — Branding for AI in Branding</strong><span>Indigo Design Award</span><time>2026</time><span class="award-arrow">↗</span></div><div class="award-row"><span>05</span><strong>Merit Award — Idea: Digital Experience</strong><span>Kancil Awards</span><time>2025</time><span class="award-arrow">↗</span></div><div class="award-row"><span>06</span><strong>Oral Presenter — AI Batik Research</strong><span>DEIC International Conference</span><time>2026</time><span class="award-arrow">↗</span></div></div></div></section>
-
-    <section class="contact-section" id="contact"><div class="section-shell contact-inner"><span class="section-number">05 / OVER TO YOU</span><div class="contact-grid"><div><h2>Have a good<br><em>idea?</em> <span>✳</span></h2><p>I'm always interested in meaningful projects, thoughtful collaborations, and conversations about what's next.</p><a class="contact-big-link" href="mailto:junhaochong5@gmail.com">Let's make it happen <span>↗</span></a></div><div class="contact-note"><span class="tape"></span><span class="tiny-label">LEAVE ME A NOTE</span><strong>GOOD THINGS<br>START WITH<br>A HELLO.</strong><a href="mailto:junhaochong5@gmail.com">junhaochong5@gmail.com ↗</a><span class="contact-doodle">☺</span></div></div><footer><span>© <span id="year">2026</span> CHONG JUN HAO</span><span>BUILT WITH CURIOSITY & A LOT OF COFFEE.</span><a href="#top">BACK TO TOP ↑</a></footer></div></section>
-  </main>
-  <dialog id="projectDialog" class="project-dialog" aria-labelledby="dialogTitle"><button type="button" class="dialog-close" id="dialogClose" aria-label="Close project details">✕</button><div id="dialogBody"></div></dialog>
+  <div class="launcher-scrim" id="launcher" hidden><div class="launcher-box" role="dialog" aria-modal="true" aria-labelledby="launcherTitle"><div class="launcher-search"><svg><use href="#i-search"/></svg><input id="launcherInput" autocomplete="off" placeholder="Search apps, projects, actions..." aria-label="Search apps"/><kbd>ESC</kbd></div><div id="launcherTitle" class="launcher-label">QUICK LAUNCH · START TYPING</div><div class="launcher-results" id="launcherResults"></div><div class="launcher-footer"><span>↑ ↓ NAVIGATE &nbsp; ↵ OPEN</span><span>PORTFOLIO OS / V2</span></div></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <footer class="dock-shell"><div class="dock" aria-label="Portfolio app dock">
+    <button class="dock-icon" type="button" data-action="home" title="Home" aria-label="Desktop home"><span class="dock-glyph dock-home">JH</span><span class="dock-dot"></span></button>
+    <div class="dock-divider"></div>
+    <button class="dock-icon" type="button" data-app="projects" title="Projects" aria-label="Open projects"><span class="dock-glyph dock-project"><svg><use href="#i-folder"/></svg></span><span class="dock-dot"></span></button>
+    <button class="dock-icon" type="button" data-app="about" title="About" aria-label="Open about"><span class="dock-glyph dock-about"><svg><use href="#i-user"/></svg></span><span class="dock-dot"></span></button>
+    <button class="dock-icon" type="button" data-app="experience" title="Journey" aria-label="Open experience"><span class="dock-glyph dock-journey"><svg><use href="#i-code"/></svg></span><span class="dock-dot"></span></button>
+    <button class="dock-icon" type="button" data-app="skills" title="Skills" aria-label="Open skills"><span class="dock-glyph dock-skills"><svg><use href="#i-grid"/></svg></span><span class="dock-dot"></span></button>
+    <button class="dock-icon" type="button" data-app="awards" title="Awards" aria-label="Open awards"><span class="dock-glyph dock-awards"><svg><use href="#i-award"/></svg></span><span class="dock-dot"></span></button>
+    <div class="dock-divider"></div>
+    <button class="dock-icon" type="button" data-app="terminal" title="Terminal" aria-label="Open terminal"><span class="dock-glyph dock-terminal"><svg><use href="#i-terminal"/></svg></span><span class="dock-dot"></span></button>
+    <button class="dock-icon" type="button" data-app="contact" title="Contact" aria-label="Open contact"><span class="dock-glyph dock-contact"><svg><use href="#i-mail"/></svg></span><span class="dock-dot"></span></button>
+    <a class="dock-icon" href="resume.html" title="Résumé (new tab)" aria-label="Open resume" target="_blank" rel="noopener"><span class="dock-glyph dock-resume"><svg><use href="#i-file"/></svg></span><span class="dock-dot"></span></a>
+  </div><span class="dock-caption">CLICK AN ICON TO EXPLORE <span>✳</span> <kbd>CTRL K</kbd> TO SEARCH</span></footer>
+</div>
 </body>
 </html>

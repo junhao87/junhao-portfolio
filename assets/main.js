@@ -1,83 +1,222 @@
+'use strict';
 (() => {
-  'use strict';
-  const doc = document;
-  const intro = doc.getElementById('intro');
-  const enter = doc.getElementById('enterSite');
-  let seen = false;
-  try { seen = sessionStorage.getItem('jh-portfolio-entered') === '1'; } catch (e) { /* Storage optional */ }
-  function dismissIntro() {
-    intro.classList.add('leaving');
-    document.body.classList.remove('intro-open');
-    try { sessionStorage.setItem('jh-portfolio-entered', '1'); } catch (e) { /* Storage optional */ }
-    window.setTimeout(() => { intro.hidden = true; }, 620);
-  }
-  if (seen) { intro.hidden = true; } else { document.body.classList.add('intro-open'); enter.focus({ preventScroll: true }); }
-  enter.addEventListener('click', dismissIntro);
-  const themeToggle = doc.getElementById('themeToggle');
-  try {
-    if (localStorage.getItem('jh-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
-  } catch (e) { /* Storage optional */ }
-  function syncThemeLabel() { themeToggle.setAttribute('aria-label', document.documentElement.dataset.theme === 'dark' ? 'Switch to light color theme' : 'Switch to dark color theme'); }
-  syncThemeLabel();
-  themeToggle.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    try { localStorage.setItem('jh-theme', next); } catch (e) { /* Storage optional */ }
-    syncThemeLabel();
-  });
-  const menuToggle = doc.getElementById('menuToggle');
-  const mobileNav = doc.getElementById('mobileNav');
-  menuToggle.addEventListener('click', () => {
-    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!isOpen));
-    mobileNav.hidden = isOpen;
-  });
-  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileNav.hidden = true; menuToggle.setAttribute('aria-expanded','false'); }));
-  const featured = [
-    { num:'01',label:'BATIK <span>STUDIO</span>',type:'AI GENERATION · 3D VISUALISATION',kind:'batik' },
-    { num:'02',label:'AI <span>THEATRE</span>',type:'SCCCI · INTERACTIVE EXPERIENCE',kind:'theatre' },
-    { num:'03',label:'NAN’AO <span>TRAVEL</span>',type:'AI TOURISM · STORYTELLING',kind:'travel' }
-  ];
-  const art = doc.getElementById('featuredArt');
-  doc.querySelectorAll('.project-select').forEach(button => button.addEventListener('click', () => {
-    const f = featured[Number(button.dataset.feature)];
-    doc.querySelectorAll('.project-select').forEach(b => { b.classList.toggle('active', b === button); b.setAttribute('aria-pressed', String(b === button)); });
-    doc.getElementById('fileNum').textContent = f.num;
-    doc.getElementById('featuredLabel').innerHTML = f.label;
-    doc.getElementById('featuredType').textContent = f.type;
-    art.className = 'batik-art art-' + f.kind;
-    art.innerHTML = f.kind === 'batik' ? '<span class="batik-shape b1"></span><span class="batik-shape b2"></span><span class="batik-shape b3"></span><span class="batik-shape b4"></span><span class="batik-shape b5"></span><span class="batik-shape b6"></span>' : f.kind === 'theatre' ? '<div class="theatre-ring ring-a"></div><div class="theatre-ring ring-b"></div><div class="theatre-core">✺</div>' : '<div class="travel-sun">✳</div><div class="travel-curve"></div><div class="travel-label">FOLLOW WHAT MOVES YOU ↗</div>';
-  }));
-  const filters = doc.querySelectorAll('.filter');
-  const projects = doc.querySelectorAll('.project-card');
-  filters.forEach(button => button.addEventListener('click', () => {
-    const kind = button.dataset.filter;
-    filters.forEach(b => { b.classList.toggle('active', b === button); b.setAttribute('aria-pressed', String(b === button)); });
-    projects.forEach(card => { card.hidden = !(kind === 'all' || card.dataset.category.split(' ').includes(kind)); });
-  }));
-  const cases = {
-    batik: { num:'01', type:'AI / CULTURAL TECHNOLOGY',title:'Batik Studio', year:'2026',summary:'Making cultural heritage part of a new, interactive design process.',overview:'Batik Studio explores how artificial intelligence can support traditional batik design while helping people visualise patterns on 3D garments.',role:'AI workflow design, prototype development, user interaction planning, documentation and presentation.',highlights:['AI-based batik design generation','3D garment visualisation workflow','Cultural preservation and accessible creative exploration'],recognition:'Gold Award — DIGITEX 2026 (UTM); oral presentation at DEIC 2026.',color:'peach' },
-    sccci: { num:'02', type:'CLIENT-BASED AI EXPERIENCE',title:'SCCCI AI Theatre', year:'2026',summary:'When business history becomes an interactive conversation.',overview:'An AI-powered exhibition experience connected to the Singapore Chinese Chamber of Commerce & Industry, combining content structure and user interaction with conversational AI.',role:'AI response flow design, user interaction logic, content structuring, testing, refinement and delivery support as part of the Digital Magic Studio team.',highlights:['Structured AI responses for visitors','User-focused dialogue and experience flow','Iterative testing aligned with client requirements'],recognition:'Professional client-based interactive AI project.',color:'violet' },
-    nanao: { num:'03', type:'AI TOURISM / EXPERIENCE DESIGN',title:'Nan’ao AI Travel Guide', year:'2025',summary:'A travel experience led by feeling, discovery and local stories.',overview:'An AI emotional travel guide concept designed to help visitors discover Nan’ao through personalised journeys, emotionally relevant recommendations and cultural storytelling.',role:'User journey, emotional interaction concepts, travel recommendation ideas and AI-guided storytelling features.',highlights:['Emotion-aware visitor journey concept','Cultural storytelling and local exploration','Travel recommendations and interaction planning'],recognition:'Second Prize — 2025 Nan’ao County Rural Operator Competition, Rural Cultural & Creative Track.',color:'yellow' }
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const names = {projects:'Projects',about:'About Me',experience:'Experience',awards:'Recognition',skills:'Tech Stack',contact:'Contact',terminal:'Terminal'};
+  const appIcons = {projects:'i-folder',about:'i-user',experience:'i-code',awards:'i-award',skills:'i-grid',contact:'i-mail',terminal:'i-terminal'};
+  let highestZ = 110, lastApp = null, toastTimer;
+  const projectData = {
+    batik: {
+      name:'Batik Studio',category:'AI GENERATION · CULTURAL HERITAGE · 2026',headline:'Tradition, reimagined through intelligent design.',
+      art:'art-batik',title:'BATIK<br>STUDIO',decoration:'<div class="batik-bloom"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>',
+      intro:'An AI-based platform exploring new ways to preserve and experience Batik heritage through pattern generation and 3D garment visualisation.',
+      role:'Contributed to the system workflow, AI generation concepts, 3D garment preview experience, interface planning, prototype development and presentation.',
+      outcome:'Presented at exhibitions and research events, including DIGITEX 2026 (Gold Award) and DEIC 2026 International Conference.',
+      tags:['AI Generation','3D Visualisation','UX Flow','Creative Technology']
+    },
+    sccci: {
+      name:'SCCCI AI Theatre',category:'CLIENT-BASED PROJECT · INTERACTIVE AI · 2026',headline:'Turning history and storytelling into a two-way conversation.',
+      art:'art-sccci',title:'AI<br>THEATRE',decoration:'<div class="sccci-disc"><div class="disc-ring"></div><div class="disc-ring ring-b"></div><div class="disc-core">✳</div></div>',
+      intro:'An interactive AI experience supporting user engagement and business storytelling for the Singapore Chinese Chamber of Commerce & Industry programme.',
+      role:'Supported the AI response flow, content organisation, user interaction logic, testing, refinement and project delivery materials.',
+      outcome:'Practical experience building and testing an AI-powered installation in a real client-facing project environment.',
+      tags:['Conversational AI','Interaction Design','Testing','Client Project']
+    },
+    nanao: {
+      name:"Nan’ao AI Travel Guide",category:'INNOVATION · AI TOURISM · 2025',headline:'Discovering places through culture, emotion and curiosity.',
+      art:'art-nanao',title:'FEEL THE<br>JOURNEY.',decoration:'<div class="nanao-route"><i></i><i></i><i></i><b>✦</b><b>✦</b></div>',
+      intro:'An emotional AI travel guide concept designed to make Nan’ao’s culture and tourism more personal through expressive journeys and storytelling.',
+      role:'Designed the overall experience concept, user journey, emotional interaction logic, travel recommendation ideas and AI-guided storytelling flow.',
+      outcome:'Second Prize in the Rural Cultural and Creative Track at the 2025 Nan’ao County Rural Operator Competition in China.',
+      tags:['AI Concept','Tourism','UX Strategy','Storytelling']
+    }
   };
-  const dialog = doc.getElementById('projectDialog');
-  const dialogBody = doc.getElementById('dialogBody');
-  const esc = s => String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
-  let previousFocus = null;
-  function showProject(key) {
-    const p = cases[key]; if (!p) return;
-    previousFocus = doc.activeElement;
-    dialogBody.innerHTML = `<div class="dialog-kicker">PROJECT FILE / ${p.num} · ${p.year}</div><div class="dialog-illustration ${p.color}"><span>THE WORK FILES</span><strong>${esc(p.title)}</strong><i>✳</i></div><span class="project-type">${esc(p.type)}</span><h2 id="dialogTitle">${esc(p.title)}<span class="period">.</span></h2><p class="dialog-summary">${esc(p.summary)}</p><div class="dialog-detail"><div><span class="tiny-label">THE IDEA</span><p>${esc(p.overview)}</p></div><div><span class="tiny-label">WHAT I WORKED ON</span><p>${esc(p.role)}</p></div></div><div class="dialog-highlights"><span class="tiny-label">KEY ELEMENTS</span><ul>${p.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul></div><p class="dialog-recognition"><strong>✷ Milestone:</strong> ${esc(p.recognition)}</p><a href="mailto:junhaochong5@gmail.com?subject=${encodeURIComponent('Enquiry about '+p.title)}" class="pill-btn primary">Ask me about this project ↗</a>`;
-    dialog.showModal();
+
+  function toast(message) {
+    const t = $('#toast'); t.textContent = message; t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
   }
-  projects.forEach(card => {
-    card.addEventListener('click', () => showProject(card.dataset.project));
-    card.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); showProject(card.dataset.project); } });
+  function setBoot(isVisible) {
+    const b=$('#boot');
+    if (!isVisible) { b.classList.add('is-hidden'); b.setAttribute('aria-hidden','true'); try {sessionStorage.setItem('jh-portfolio-entered','1');} catch (_) {} }
+  }
+  $('#enterButton').addEventListener('click', () => setBoot(false));
+  try { if (sessionStorage.getItem('jh-portfolio-entered') === '1') setBoot(false); } catch (_) {}
+
+  function moveFront(win) { win.style.zIndex = String(++highestZ); }
+  function openApp(app) {
+    const win = document.getElementById('win-'+app);
+    if (!win) return;
+    if (win.hidden) {
+      win.hidden = false;
+      win.classList.remove('is-maximized');
+      // Slight offset on each additional app, while keeping windows inside the viewport.
+      const openCount=$$('.app-window.is-open').length;
+      if (window.innerWidth > 600) {
+        win.style.left = 'calc(50% + '+Math.min(openCount*21,90)+'px)';
+        win.style.top  = 'calc(49% + '+Math.min(openCount*16,65)+'px)';
+      }
+      requestAnimationFrame(() => win.classList.add('is-open'));
+    } else { win.classList.add('is-open'); }
+    moveFront(win); lastApp=app;
+    $$(`.dock-icon[data-app="${app}"]`).forEach(el=>el.classList.add('is-running'));
+    if (app==='terminal') setTimeout(() => $('#terminalInput').focus(),200);
+    if (app==='projects') resetDetail(false);
+  }
+  function closeApp(app) {
+    const win=$('#win-'+app); if (!win) return;
+    win.classList.remove('is-open');
+    setTimeout(() => { if (!win.classList.contains('is-open')) win.hidden = true; },240);
+    $$(`.dock-icon[data-app="${app}"]`).forEach(el=>el.classList.remove('is-running'));
+  }
+  function closeAll(){ $$('.app-window.is-open').forEach(w=>closeApp(w.dataset.window)); }
+  function home(){closeAll();if (window.innerWidth>600) toast('Back to the desktop ✳');}
+
+  document.addEventListener('click',e=>{
+    const app=e.target.closest('[data-app]');
+    if(app) { e.preventDefault(); openApp(app.dataset.app); return; }
+    const closer=e.target.closest('[data-close]'); if(closer){closeApp(closer.dataset.close);return;}
+    const minimizer=e.target.closest('[data-min]'); if(minimizer){closeApp(minimizer.dataset.min);return;}
+    const maximizer=e.target.closest('[data-max]'); if(maximizer){const w=$('#win-'+maximizer.dataset.max);w.classList.toggle('is-maximized');moveFront(w);return;}
+    const action=e.target.closest('[data-action]');
+    if(action?.dataset.action==='home')home();
+    if(action?.dataset.action==='search')showLauncher();
   });
-  doc.getElementById('dialogClose').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', ev => { if (ev.target === dialog) dialog.close(); });
-  dialog.addEventListener('close', () => previousFocus?.focus());
-  doc.getElementById('year').textContent = new Date().getFullYear();
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold:.09 });
-  doc.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+  $$('.app-window').forEach(w=>w.addEventListener('pointerdown',()=>moveFront(w)));
+
+  // Drag a window by its chrome. Only mouse/pen handles drag to keep touch scrolling reliable.
+  $$('.window-titlebar').forEach(bar=>{
+    let drag=null;
+    bar.addEventListener('pointerdown',e=>{
+      if(e.button!==0 || e.pointerType==='touch' || e.target.closest('button'))return;
+      const w=bar.closest('.app-window');
+      if(w.classList.contains('is-maximized') || window.innerWidth<=600)return;
+      const layer=$('#windowLayer').getBoundingClientRect(), rect=w.getBoundingClientRect();
+      drag={w,x:e.clientX,y:e.clientY,left:rect.left-layer.left+rect.width/2,top:rect.top-layer.top+rect.height/2,layer};
+      w.style.left=drag.left+'px';w.style.top=drag.top+'px';w.classList.add('is-dragging');
+      bar.setPointerCapture(e.pointerId);
+    });
+    bar.addEventListener('pointermove',e=>{
+      if(!drag)return;
+      const rect=drag.w.getBoundingClientRect(), maxX=drag.layer.width-rect.width*.25, maxY=drag.layer.height-50;
+      drag.w.style.left=Math.max(rect.width*.25,Math.min(maxX,drag.left+e.clientX-drag.x))+'px';
+      drag.w.style.top=Math.max(50,Math.min(maxY,drag.top+e.clientY-drag.y))+'px';
+    });
+    const stop=()=>{if(drag){drag.w.classList.remove('is-dragging');drag=null;}};
+    bar.addEventListener('pointerup',stop);bar.addEventListener('pointercancel',stop);
+    bar.addEventListener('dblclick',e=>{if(!e.target.closest('button'))bar.querySelector('[data-max]')?.click();});
+  });
+
+  // Browse projects by category; detail stays inside the portfolio window.
+  $$('.browser-filter').forEach(filter=>filter.addEventListener('click',()=>{
+    $$('.browser-filter').forEach(b=>b.classList.toggle('active',b===filter));
+    const value=filter.dataset.projectFilter;
+    $$('.project-tile').forEach(tile=>tile.hidden=value!=='all'&&!tile.dataset.category.split(' ').includes(value));
+    resetDetail(false);
+  }));
+  function resetDetail(scroll=true) {
+    $('#projectDetail').hidden=true;
+    $('#projectDetail').innerHTML='';
+    if(scroll)$('#browserMain').scrollTop=0;
+  }
+  function openProject(key){
+    const d=projectData[key];if(!d)return;
+    const content=`<button type="button" class="detail-back" id="detailBack">← BACK TO ALL WORK</button>
+      <div class="detail-art ${d.art}"><span class="art-toplabel">${d.category}</span>${d.decoration}<strong>${d.title}</strong><span class="art-bottomlabel">CHONG JUN HAO · SELECTED WORK</span></div>
+      <span class="micro-label">SELECTED PROJECT / CASE STUDY</span><h2 style="font:600 34px 'Space Grotesk',sans-serif;letter-spacing:-.055em;margin:12px 0 6px">${d.name}</h2>
+      <p class="detail-intro">${d.headline}</p><div class="detail-cols"><div><h3>THE IDEA</h3><p>${d.intro}</p><h3>MY CONTRIBUTION</h3><p>${d.role}</p></div><div><h3>THE RESULT</h3><p>${d.outcome}</p><h3>FOCUS AREAS</h3><div class="detail-tags">${d.tags.map(t=>'<span>'+t+'</span>').join('')}</div></div></div>`;
+    const detail=$('#projectDetail');detail.innerHTML=content;detail.hidden=false;$('#browserMain').scrollTop=0;
+    $('#detailBack').addEventListener('click',()=>resetDetail());
+  }
+  $$('.project-tile').forEach(t=>t.addEventListener('click',()=>openProject(t.dataset.project)));
+
+  // Contact copy with a fallback for local file browsing.
+  $('#copyEmail').addEventListener('click',async()=>{
+    const email='junhaochong5@gmail.com';
+    try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(email);toast('Email address copied to clipboard');return;}}catch(_){}
+    window.prompt('Copy email address:',email);
+  });
+
+  // Terminal: strictly local predefined commands, no code execution/network.
+  const terminalHelp='Available commands: help, about, projects, skills, experience, awards, contact, resume, open [app], date, clear';
+  const terminalResponses={
+    help:terminalHelp,
+    about:'CHONG JUN HAO — AI graduate, junior software developer & curious maker.\nBased in Johor Bahru, Malaysia.',
+    projects:'01  Batik Studio — AI generation + 3D garment visualisation\n02  SCCCI AI Theatre — interactive AI client project\n03  Nan’ao AI Travel Guide — AI tourism concept',
+    skills:'Python, JavaScript, HTML/CSS, PHP, Computer Vision, NLP, AI Model Evaluation, MySQL, UI/UX.',
+    experience:'2026—present  Digital Magic Studio (Freelance AI Project Assistant)\n2025—2026      Digital Magic Studio (Intern)\n2023—2024      My Serve Solutions (UI/UX Intern)',
+    awards:'DIGITEX Gold 2026 · DIGITEX Silver 2026 · Nan’ao Second Prize 2025 · Indigo Silver 2026 · Kancil Merit 2025',
+    contact:'Say hello: junhaochong5@gmail.com'
+  };
+  const terminalForm=$('#terminalForm'), terminalOutput=$('#terminalOutput'), terminalInput=$('#terminalInput');
+  terminalForm.addEventListener('submit',e=>{
+    e.preventDefault();const raw=terminalInput.value.trim();if(!raw)return;
+    terminalInput.value='';const command=raw.toLowerCase().replace(/\s+/g,' ');
+    if(command==='clear'){terminalOutput.replaceChildren();return;}
+    const line=document.createElement('div');line.textContent='junhao@portfolio ~ % '+raw;line.className='term-purple';terminalOutput.appendChild(line);
+    const answer=document.createElement('div');answer.className='term-aqua';
+    if(terminalResponses[command])answer.textContent=terminalResponses[command];
+    else if(command==='date')answer.textContent=new Date().toString();
+    else if(command==='resume'){answer.textContent='Opening resume in a new tab...';window.open('resume.html','_blank','noopener,noreferrer');}
+    else if(command.startsWith('open ')){
+      const target=command.slice(5).trim();
+      if(names[target]){openApp(target);answer.textContent='Opening '+names[target]+'...';}
+      else answer.textContent='Unknown app. Try: open projects, open about, open contact.';
+    }
+    else answer.textContent='Command not found: '+raw+'\nTry help';
+    terminalOutput.appendChild(answer);terminalOutput.appendChild(document.createElement('br'));terminalOutput.scrollTop=terminalOutput.scrollHeight;
+  });
+
+  // Command palette Ctrl/Cmd+K
+  const actions=[...Object.keys(names).map(id=>({id,name:names[id],icon:appIcons[id],type:'APP'})),
+    {id:'resume',name:'View Résumé',icon:'i-file',type:'LINK'},
+    {id:'batik',name:'Batik Studio',icon:'i-folder',type:'PROJECT'},
+    {id:'sccci',name:'SCCCI AI Theatre',icon:'i-folder',type:'PROJECT'},
+    {id:'nanao',name:'Nan’ao AI Travel Guide',icon:'i-folder',type:'PROJECT'}];
+  let matching=[],activeMatch=0;
+  function drawMatches(){
+    const term=$('#launcherInput').value.toLowerCase().trim();
+    matching=actions.filter(a=>a.name.toLowerCase().includes(term)||a.id.toLowerCase().includes(term)||a.type.toLowerCase().includes(term)).slice(0,9);
+    activeMatch=0;
+    $('#launcherResults').innerHTML=matching.length?matching.map((a,i)=>`<button class="launcher-result ${i===0?'active':''}" type="button" data-match="${i}"><svg><use href="#${a.icon}"/></svg><span>${a.name}</span><small>${a.type}</small></button>`).join(''):'<div style="color:#9490aa;padding:12px 15px;font-size:12px">Nothing found. Try “projects”.</div>';
+  }
+  function selectMatch(item){if(!item)return;hideLauncher();if(item.type==='APP')openApp(item.id);if(item.type==='LINK')window.open('resume.html','_blank','noopener,noreferrer');if(item.type==='PROJECT'){openApp('projects');setTimeout(()=>openProject(item.id),100);}}
+  function showLauncher(){const el=$('#launcher');el.hidden=false;$('#launcherInput').value='';drawMatches();setTimeout(()=>$('#launcherInput').focus(),20);}
+  function hideLauncher(){$('#launcher').hidden=true;}
+  $('#launcher').addEventListener('click',e=>{if(e.target.id==='launcher')hideLauncher();const result=e.target.closest('[data-match]');if(result)selectMatch(matching[Number(result.dataset.match)]);});
+  $('#launcherInput').addEventListener('input',drawMatches);
+  $('#launcherInput').addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();activeMatch=(activeMatch+(e.key==='ArrowDown'?1:-1)+matching.length)%Math.max(1,matching.length);$$('.launcher-result').forEach((node,i)=>node.classList.toggle('active',i===activeMatch));}
+    if(e.key==='Enter'){e.preventDefault();selectMatch(matching[activeMatch]);}
+  });
+  document.addEventListener('keydown',e=>{
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();showLauncher();}
+    if(e.key==='Escape'){
+      if(!$('#launcher').hidden){hideLauncher();return;}
+      if(!$('#boot').classList.contains('is-hidden')){setBoot(false);return;}
+      if(!$('#projectDetail').hidden){resetDetail();return;}
+      const open=$$('.app-window.is-open').sort((a,b)=>Number(b.style.zIndex||0)-Number(a.style.zIndex||0))[0];
+      if(open)closeApp(open.dataset.window);
+    }
+  });
+  function drawClock(){
+    try{const now=new Date();$('#clock').textContent=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(now).replace(',',' ·');}catch(_){}
+  }
+  drawClock();setInterval(drawClock,30_000);
+
+  // Decorative stars: local canvas, no external graphics service or GPU library needed.
+  const canvas=$('#stars'),ctx=canvas.getContext('2d');
+  if(ctx){
+    let stars=[],w=0,h=0,frame=0;const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    function resize(){
+      const dpr=Math.min(window.devicePixelRatio||1,2);
+      w=canvas.clientWidth;h=canvas.clientHeight;
+      canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+      stars=Array.from({length:Math.min(130,Math.max(45,Math.floor(w*h/16000)))},()=>({x:Math.random()*w,y:Math.random()*h,r:.35+Math.random()*.75,p:Math.random()*Math.PI*2}));
+      draw();
+    }
+    function draw(){ctx.clearRect(0,0,w,h);stars.forEach(s=>{ctx.globalAlpha=.12+.23*(1+Math.sin(s.p+frame/60))/2;ctx.fillStyle='#e4d8ff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;}
+    function tick(){frame++;draw();if(!reduced.matches&&!document.hidden)requestAnimationFrame(tick);}
+    window.addEventListener('resize',resize);resize();if(!reduced.matches)requestAnimationFrame(tick);
+  }
 })();
