@@ -9,10 +9,10 @@
     batik: {
       name:'Batik Studio',category:'AI GENERATION · CULTURAL HERITAGE · 2026',headline:'Tradition, reimagined through intelligent design.',
       art:'art-batik',title:'BATIK<br>STUDIO',decoration:'<div class="batik-bloom"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>',
-      intro:'An AI-based platform exploring new ways to preserve and experience Batik heritage through pattern generation and 3D garment visualisation.',
-      role:'Contributed to the system workflow, AI generation concepts, 3D garment preview experience, interface planning, prototype development and presentation.',
+      intro:'An independently developed platform combining Poisson blending, Stable Diffusion Img2Img, 3D garments, color customization and Batik cultural learning.',
+      role:'Sole Developer & Researcher. Built the AI generation pipeline, Three.js garment visualization, multilingual cultural assistant and complete web experience.',
       outcome:'Presented at exhibitions and research events, including DIGITEX 2026 (Gold Award) and DEIC 2026 International Conference.',
-      tags:['AI Generation','3D Visualisation','UX Flow','Creative Technology']
+      tags:['Stable Diffusion','Poisson Blending','Three.js','Full Stack']
     },
     sccci: {
       name:'SCCCI AI Theatre',category:'CLIENT-BASED PROJECT · INTERACTIVE AI · 2026',headline:'Turning history and storytelling into a two-way conversation.',

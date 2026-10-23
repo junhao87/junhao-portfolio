@@ -12,21 +12,21 @@ window.JH_CONTENT = {
     batik: {
       slug: 'batik-studio',
       name: 'Batik Studio',
-      kind: 'AI GENERATION / CULTURAL TECHNOLOGY', year: '2026', number: '01',
-      tagline: 'Tradition, reimagined through intelligent design.',
-      summary: 'An AI-based project exploring Batik pattern generation and 3D garment visualisation as a way of experiencing cultural heritage.',
-      challenge: 'Explore how a digital experience could connect traditional Batik aesthetics with accessible, interactive creative tools.',
-      approach: 'Designed the journey from AI-generated pattern concepts to garment preview and user interaction, with attention to workflow clarity and cultural storytelling.',
-      contribution: 'Contributed to AI workflow design, concept development, interface planning, prototype refinement, documentation and presentation.',
-      result: 'Presented at DIGITEX 2026 (Gold Award) and at DEIC 2026 as an oral research presentation. Additional implementation details can be added once confirmed.',
+      kind: 'INDEPENDENT AI RESEARCH / CULTURAL TECHNOLOGY', year: '2026', number: '01',
+      tagline: 'Where Malaysian Batik heritage meets generative AI and interactive 3D fashion.',
+      summary: 'An independently built web application that combines two traditional Batik motifs using Poisson Image Blending and Stable Diffusion Img2Img, then lets users recolor patterns, apply them to 3D garments, learn about Batik culture, and save designs for reuse.',
+      challenge: 'Traditional Batik creation depends on specialist craftsmanship, while typical design tools seldom connect motif generation, interactive garment previews, and accessible cultural learning in one place.',
+      approach: 'Developed and evaluated five generative workflows before selecting a Poisson blending and Stable Diffusion 1.5 Img2Img pipeline. Connected generation, color adjustment, Three.js garment previews, a multilingual knowledge assistant, and local design history.',
+      contribution: 'Sole Developer & Researcher. Personally led research, interface and AI pipeline development, Three.js implementation, multilingual cultural assistant, evaluation, documentation, and research presentation.',
+      result: 'DIGITEX 2026 Gold Award and DEIC 2026 oral research presentation. In a 58-person user preference study, 94.8% gave the motif aesthetic quality the highest rating of 5/5.',
       process: [
-        ['01', 'Research & concept', 'Translate the cultural preservation idea into an interactive digital experience.'],
-        ['02', 'AI workflow & preview', 'Plan the pattern creation and visualisation journey.'],
-        ['03', 'Prototype & presentation', 'Refine interactions and communicate outcomes in public showcases.']
+        ['01', 'Research & benchmarking', 'Studied cultural symbolism and compared five AI generation approaches.'],
+        ['02', 'End-to-end implementation', 'Built Poisson + Img2Img generation, HSL recoloring, Three.js garment texturing, and the Batik Kon assistant.'],
+        ['03', 'Evaluation & presentation', 'Matched local and Colab inference settings, gathered feedback from 58 participants, and presented the results.']
       ],
-      tags: ['AI Generation', '3D Garment Preview', 'Creative Technology', 'UX Planning'],
-      note: 'Awaiting your real system screenshots, a project demo and detailed technical breakdown.',
-      media: {cover:'assets/media/batik/cover.jpg', screen1:'assets/media/batik/01.jpg', screen2:'assets/media/batik/02.jpg', video:'assets/media/batik/demo.mp4'}
+      tags: ['Stable Diffusion 1.5', 'Poisson Image Blending', 'Three.js', 'PyTorch', 'WebGL', 'Multilingual i18n', 'IndexedDB'],
+      note: '58-participant survey figures describe participant preferences, not model accuracy. The full technical research is documented in the project paper.',
+      media: {cover:'assets/media/batik/cover.jpg', screen1:'assets/media/batik/platform-overview.jpg', screen2:'assets/media/batik/ai-pattern-01.jpg', video:'assets/media/batik/demo.mp4'}
     },
     sccci: {
       slug: 'sccci-ai-theatre',

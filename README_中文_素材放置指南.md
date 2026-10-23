@@ -1,3 +1,60 @@
+# V4 Batik Studio 专项更新（保留 V3 电脑版与手机版）
+
+这一版主要完善 `projects/batik-studio.html`，没有重新设计 SCCCI 或 Nan’ao。
+Batik Studio 页面专门设计了平台图、AI 图样、3D 服装、书签实物、客户/访客照片、奖项证书及 Demo 视频栏目。
+
+## 图片如何加进去
+
+**步骤**：GitHub Desktop → `junhao-portfolio` → **Repository → Show in Explorer** → `assets/media/batik/` → 放入按下面命名的图片/视频 → Commit → Push origin。
+
+| 你提供什么 | 放入这个路径 | 页面位置 |
+|---|---|---|
+| 最适合作为封面的漂亮 Batik 图 | `assets/media/batik/cover.jpg` | 首页 Batik 卡片 + Case Study 大封面 |
+| 整个 Batik Studio 网站截图 | `assets/media/batik/platform-overview.jpg` | 完整平台展示 |
+| AI pipeline / 技术架构图（有的话） | `assets/media/batik/pipeline-diagram.jpg` | Generation pipeline |
+| AI 生成的第 1–4 张 Batik 图 | `assets/media/batik/ai-pattern-01.jpg` ... `ai-pattern-04.jpg` | AI 图样展示四宫格 |
+| 3D T-shirt 截图 | `assets/media/batik/garment-tshirt.jpg` | 3D 服装 |
+| 3D Baju Kurung 截图 | `assets/media/batik/garment-baju-kurung.jpg` | 3D 服装 |
+| 制作的书签成品照片 | `assets/media/batik/bookmark-product.jpg` | Beyond the Screen |
+| 客户/访客与书签或平台的照片 | `assets/media/batik/bookmark-event.jpg` | Beyond the Screen |
+| DIGITEX 金奖奖状/获奖照片 | `assets/media/batik/award-gold.jpg` | Recognition |
+| DEIC Oral Presenter 证书 | `assets/media/batik/deic-certificate.jpg` | Recognition |
+| 展览板或展会照片 | `assets/media/batik/exhibition.jpg` | Recognition |
+| 平台操作演示视频 | `assets/media/batik/demo.mp4` | Demonstration |
+
+说明：**没有提供素材时，页面会显示精心设计的占位图**。上传真实图片以后，页面会自动显示；点击真实图片可以放大预览。一般不需要再改 HTML。
+
+## 上传的小技巧
+
+- 每张照片或截图先使用清晰且适度压缩的 JPG。宽图建议 1600px 左右；证书建议保留可读文字。
+- AI 图样四张可以展示不同风格/颜色；如果很多，先选最能体现生成质量和差异的四张。
+- 如果图片实际是 PNG，可转换为 JPG 后上传，**不要只更改扩展名**；也可以把网页 `data-img` 路径改成 `.png`。
+- `demo.mp4` 建议 H.264 编码；体积大的视频建议交给我一起优化，不要把超大视频直接推送到 GitHub Repository。
+- 访客/客户照片如能识别人脸，先征得公开展示的明确同意；否则裁切或模糊化。奖状、学位证书请遮盖证件号码、学号、签名等不想公开的信息。
+- 如果你说的“文凭照片”是**毕业学位证书**而非 DIGITEX/DEIC 证书，建议放在 About/Education 栏目，不与项目获奖混淆；可以提供后由我排版。
+
+## Portfolio 网站保持不变
+
+`index.html` / `resume.html` / 原有黑色桌面和手机界面保留；`assets/portfolio-data.js` 的 Batik 内容已从原本较笼统的简历描述更新为你的实际工作：**独立开发者与研究者**，并同步到首页项目介绍。
+
+你的 Batik 独立页面：
+
+`https://junhao87.github.io/junhao-portfolio/projects/batik-studio.html`
+
+## 以后修改 Batik 的文字
+
+- 首页项目短描述：`assets/portfolio-data.js`，找到 `projects.batik`。
+- 本次完整版 Case Study 正文：`projects/batik-studio.html`。
+- 本页 CSS：`assets/batik-case.css`。
+- 媒体自动加载和点击放大：`assets/batik-case.js`。
+- 其他两个项目的文件还没有修改，之后再逐个整理。
+
+## 研究数据说明
+
+研究中的 `94.8% / 77.6% / 56.9%` 是 **58 人用户偏好问卷**的数据，不是模型识别率，也不是模型 accuracy。比较五种 pipeline 的“最好”是你报告中描述的**定性综合比较**，没有编造模型分数或其它未提供指标。
+
+---
+
 # Portfolio V3 — 照片、项目截图、视频、Case Study 放置指南
 
 > 当前版本保留黑色电脑桌面，同时有独立手机首页、底部导航与适合触控的项目窗口。
