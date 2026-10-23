@@ -15,3 +15,8 @@
 .b-pdf-link strong{font:600 clamp(20px,2.1vw,31px)/1.25 'Space Grotesk',sans-serif;letter-spacing:-.04em}
 .b-pdf-link small{font:500 10px 'DM Mono',monospace;color:#c7b2f4;letter-spacing:.08em}
 .b-certificate-gallery .b-pdf-ready figcaption{pointer-events:none}
+
+/* V4.3: media is loaded eagerly, opacity is for presentation only. */
+.b-media > img.b-asset { opacity: 0; visibility: visible !important; transition: opacity .22s ease; }
+.b-media.b-loaded > img.b-asset { opacity: 1; }
+.b-media.b-loaded .b-empty { visibility: hidden; }

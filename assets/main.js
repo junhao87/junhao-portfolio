@@ -61,10 +61,10 @@
   // Upload original PNG/JPG files; Batik cover works with either format on desktop/mobile.
   function addOptionalCover(container, path) {
     if (!container || !path) return;
-    const img = new Image(); img.className = 'real-project-cover'; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-    img.style.visibility = 'hidden';
+    const img = new Image(); img.className = 'real-project-cover'; img.alt = ''; img.loading = 'eager'; img.decoding = 'async';
+    img.style.opacity = '0';
     container.appendChild(img); // V4.2: lazy loading needs a connected image.
-    img.addEventListener('load', () => { img.style.visibility = ''; container.classList.add('has-cover'); }, {once:true});
+    img.addEventListener('load', () => { if (!img.naturalWidth) return; img.style.opacity = '1'; container.classList.add('has-cover'); }, {once:true});
     const candidates = /\/batik\//.test(path) ? [...new Set([path.replace(/\.(jpg|jpeg|png|webp)$/i, '.png'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpeg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')])] : [path];
     let i = 0;
     img.addEventListener('error', () => { if (++i < candidates.length) img.src = candidates[i]; else img.remove(); });

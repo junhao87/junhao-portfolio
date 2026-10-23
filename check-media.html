@@ -10,34 +10,77 @@ button{background:#8256c8;color:white;border:0;border-radius:8px;padding:10px 19
 table{width:100%;border-collapse:collapse}th,td{padding:11px 7px;border-bottom:1px solid #352b3e;text-align:left;vertical-align:middle}th{font-size:12px;color:#aa99c1}td{overflow-wrap:anywhere}
 .ok{color:#99e3b9}.bad{color:#ffa39c}.muted{color:#a9a0b0}.pending{color:#ded3ea}code{background:#231b2d;padding:2px 6px;border-radius:4px}
 @media(max-width:580px){table{font-size:12px}td,th{padding:11px 4px}.last{display:none}}
-</style></head><body><main>
-<div class="top"><div><p class="sub"><a href="./projects/batik-studio.html">← 返回 Batik Studio</a></p><h1>Batik 媒体检查</h1><p>此页面检查 Github Pages 上真正可访问的文件，<b>不是</b>电脑本地文件。</p></div><button id="refresh">重新检测</button></div>
-<div class="panel"><div id="summary" aria-live="polite">准备检查…</div><p class="sub">上传路径必须是 <code>assets/media/batik/</code>，文件名与扩展名大小写敏感。图片允许 PNG、JPG、JPEG、WebP；证书也允许 PDF。<b>cover2、pipeline-diagram 和 demo.mp4 可选。</b></p></div>
-<table><thead><tr><th>媒体文件</th><th>结果</th><th>已找到格式</th><th class="last">打开文件</th></tr></thead><tbody id="results"></tbody></table>
+.thumb{height:43px;width:58px;object-fit:contain;vertical-align:middle;border:1px solid #4b3f62;border-radius:5px;background:#171320}.note{background:#20192c;border-left:3px solid #a985f2;padding:12px 16px;border-radius:5px}.warn{color:#ffb5a6}</style></head><body><main>
+<div class="top"><div><p class="sub"><a href="./projects/batik-studio.html">← 返回 Batik Studio</a></p><h1>Batik 媒体检查</h1><p>此页面检查 GitHub Pages 上的真实文件，同时验证图片能否被浏览器解码。绿色 FOUND 不再只是文件存在。</p></div><button id="refresh">重新检测</button></div>
+<div class="panel"><div id="summary" aria-live="polite">准备检查…</div><p class="sub">上传路径必须是 <code>assets/media/batik/</code>，文件名与扩展名大小写敏感。图片允许 PNG、JPG、JPEG、WebP；证书也允许 PDF。<b>cover2、pipeline-diagram 和 demo.mp4 可选。</b></p></div><p class="note">如果 <b>HTTP ✓</b>、<b>图片解码 ✕</b>，文件存在但浏览器无法读取它的图片内容；请重新导出 PNG 或 JPEG。如果两项都 ✓，而 Case Study 仍不显示，请更新网页 JavaScript 并强制刷新。</p>
+<table><thead><tr><th>媒体文件</th><th>HTTP</th><th>图片解码</th><th>格式</th><th class="last">打开文件</th></tr></thead><tbody id="results"></tbody></table>
 </main><script>
+// V4.3 media diagnostic checks both HTTP accessibility and actual image decoding.
 const assets = [
-['封面', 'cover'],['平台截图','platform-overview'],
-['AI 图案 01','ai-pattern-01'],['AI 图案 02','ai-pattern-02'],['AI 图案 03','ai-pattern-03'],['AI 图案 04','ai-pattern-04'],['AI 图案 05','ai-pattern-05'],
-['T-shirt','garment-tshirt'],['Baju Kurung','garment-baju-kurung'],
-['书签成品','bookmark-product'],['书签现场','bookmark-event'],
-['DIGITEX 金奖证书','award-gold'],['DEIC 证书','deic-certificate'],['展览','exhibition'],
-['附加封面（可选）','cover2',true],['技术流程图（可选）','pipeline-diagram',true],['Demo 视频（可选）','demo',true]
+  ['封面','cover'],['平台截图','platform-overview'],
+  ['AI 图案 01','ai-pattern-01'],['AI 图案 02','ai-pattern-02'],['AI 图案 03','ai-pattern-03'],
+  ['AI 图案 04','ai-pattern-04'],['AI 图案 05','ai-pattern-05'],
+  ['T-shirt','garment-tshirt'],['Baju Kurung','garment-baju-kurung'],
+  ['书签成品','bookmark-product'],['书签现场','bookmark-event'],
+  ['DIGITEX 金奖证书','award-gold'],['DEIC 证书','deic-certificate'],['展览','exhibition'],
+  ['附加封面（可选）','cover2',true],['技术流程图（可选）','pipeline-diagram',true],['Demo 视频（可选）','demo',true]
 ];
 const base = './assets/media/batik/';
-async function exists(url){try{const r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok;}catch{return false;}}
-async function check(label,name,optional){const extensions = name==='demo'?['mp4']:(name==='award-gold'||name==='deic-certificate'?['png','jpg','jpeg','webp','pdf']:['png','jpg','jpeg','webp']);
-for(const ext of extensions){const url=base+name+'.'+ext;if(await exists(url))return{label,name,optional,found:url,ext};}
-return{label,name,optional,found:null,ext:null};}
-let running=false;
-async function run(){if(running)return;running=true;const button=document.querySelector('#refresh');button.disabled=true;
-const tbody=document.querySelector('#results');tbody.textContent='';document.querySelector('#summary').textContent='正在核对 '+assets.length+' 个媒体位置…';
-const items=await Promise.all(assets.map(x=>check(...x)));let ok=0,missing=0;
-for(const item of items){if(item.found)ok++;else if(!item.optional)missing++;
-const tr=document.createElement('tr');const title=document.createElement('td');title.textContent=item.label+' ('+item.name+')';
-const status=document.createElement('td');status.textContent=item.found?'✓ FOUND':(item.optional?'可选 / 未上传':'✕ NOT FOUND');status.className=item.found?'ok':(item.optional?'muted':'bad');
-const extension=document.createElement('td');extension.textContent=item.ext||'—';
-const linkTd=document.createElement('td');linkTd.className='last';if(item.found){const a=document.createElement('a');a.href=item.found;a.target='_blank';a.rel='noopener';a.textContent='打开';linkTd.append(a)}else{linkTd.textContent='—';}
-tr.append(title,status,extension,linkTd);tbody.append(tr)}
-const sum=document.querySelector('#summary');sum.textContent='已找到 '+ok+' 项；缺失 '+missing+' 项必需素材。'+(missing?'请检查 GitHub Desktop 是否 Push、文件目录、扩展名与大小写。':'全部必需媒体路径正常。');button.disabled=false;running=false;}
-document.querySelector('#refresh').addEventListener('click',run);run();
+async function exists(url) {
+  try { const r = await fetch(url, {method:'HEAD', cache:'no-store'}); return r.ok; }
+  catch { return false; }
+}
+async function decodeImage(url) {
+  return await new Promise(resolve => {
+    const img = new Image();
+    let finished = false;
+    const done = ok => { if (finished) return; finished = true; resolve(ok); };
+    img.onload = () => done(img.naturalWidth > 0 && img.naturalHeight > 0);
+    img.onerror = () => done(false);
+    img.src = url;
+    if (img.complete) done(img.naturalWidth > 0 && img.naturalHeight > 0);
+  });
+}
+async function check(label, name, optional) {
+  const extensions = name === 'demo' ? ['mp4'] :
+    (name === 'award-gold' || name === 'deic-certificate' ? ['png','jpg','jpeg','webp','pdf'] : ['png','jpg','jpeg','webp']);
+  for (const ext of extensions) {
+    const url = base + name + '.' + ext;
+    if (await exists(url)) {
+      const isImage = ['png','jpg','jpeg','webp'].includes(ext);
+      return {label, name, optional, url, ext, decoded: isImage ? await decodeImage(url) : null};
+    }
+  }
+  return {label, name, optional, url:null, ext:null, decoded:null};
+}
+let running = false;
+async function run() {
+  if (running) return;
+  running = true;
+  const button=document.getElementById('refresh');button.disabled=true;
+  const tbody=document.getElementById('results');tbody.replaceChildren();
+  document.getElementById('summary').textContent='正在检查文件并解码图片…';
+  const items=await Promise.all(assets.map(a=>check(...a)));
+  let ok=0, broken=0, missing=0;
+  for (const item of items) {
+    const tr=document.createElement('tr');
+    const file=document.createElement('td');file.textContent=item.label+' ('+item.name+')';
+    const status=document.createElement('td');status.textContent=item.url?'✓ FOUND':(item.optional?'可选 / 未上传':'✕ NOT FOUND');status.className=item.url?'ok':(item.optional?'muted':'bad');
+    const decode=document.createElement('td');
+    if (item.decoded === true) { decode.textContent='✓ 可显示';decode.className='ok';ok++; }
+    else if(item.decoded === false){decode.textContent='✕ 无法解码';decode.className='bad';broken++;}
+    else {decode.textContent=item.url?'PDF / VIDEO':'—';decode.className='muted';}
+    if (!item.url && !item.optional) missing++;
+    const ext=document.createElement('td');ext.textContent=item.ext||'—';
+    const link=document.createElement('td');link.className='last';
+    if (item.url){
+      const a=document.createElement('a');a.href=item.url;a.target='_blank';a.rel='noopener';a.textContent='打开';link.append(a);
+      if(item.decoded === true){const preview=new Image();preview.className='thumb';preview.alt='';preview.src=item.url;link.prepend(preview,document.createTextNode(' '));}
+    }else{link.textContent='—';}
+    tr.append(file,status,decode,ext,link);tbody.appendChild(tr);
+  }
+  document.getElementById('summary').textContent=`可解码图片 ${ok} 张；无法解码 ${broken} 张；缺失必需文件 ${missing} 项。`;
+  button.disabled=false;running=false;
+}
+document.getElementById('refresh').addEventListener('click',run);run();
 </script></body></html>
