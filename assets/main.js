@@ -32,6 +32,44 @@
     }
   };
 
+  // Single source of truth for portfolio descriptions and case studies.
+  const editableProjects = window.JH_CONTENT?.projects || {};
+  Object.entries(editableProjects).forEach(([id, content]) => {
+    if (projectData[id]) {
+      projectData[id].headline = content.tagline || projectData[id].headline;
+      projectData[id].intro = content.summary || projectData[id].intro;
+      projectData[id].role = content.contribution || projectData[id].role;
+      projectData[id].outcome = content.result || projectData[id].outcome;
+      projectData[id].tags = content.tags || projectData[id].tags;
+      projectData[id].slug = content.slug;
+    }
+  });
+  // Photos are optional: blank placeholders remain until a real file is provided.
+  $$('.profile-photo-wrap .real-photo').forEach(photo => {
+    photo.addEventListener('load', () => photo.parentElement.classList.add('has-photo'));
+    photo.addEventListener('error', () => { photo.hidden = true; });
+    if (photo.complete && photo.naturalWidth) photo.parentElement.classList.add('has-photo');
+  });
+  function syncMobileNavigation(app) {
+    $$('.mobile-tab').forEach(tab => {
+      const active = tab.dataset.mobileTab === app;
+      tab.classList.toggle('active', active);
+      if (active) tab.setAttribute('aria-current','page');
+      else tab.removeAttribute('aria-current');
+    });
+  }
+  // Any future cover.jpg automatically appears on desktop cards, mobile cards and project details.
+  function addOptionalCover(container, path) {
+    if (!container || !path) return;
+    const img = new Image(); img.className = 'real-project-cover'; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+    img.addEventListener('load', () => { container.appendChild(img); container.classList.add('has-cover'); });
+    img.src = path;
+  }
+  Object.entries(editableProjects).forEach(([key, project]) => {
+    addOptionalCover($(`.project-tile[data-project="${key}"] .tile-art`), project.media?.cover);
+    const feature = key === 'batik' ? '.mobile-feature-batik' : key === 'sccci' ? '.mobile-feature-sccci' : '.mobile-feature-nanao';
+    addOptionalCover($(feature), project.media?.cover);
+  });
   function toast(message) {
     const t = $('#toast'); t.textContent = message; t.classList.add('show');
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
@@ -58,7 +96,7 @@
       }
       requestAnimationFrame(() => win.classList.add('is-open'));
     } else { win.classList.add('is-open'); }
-    moveFront(win); lastApp=app;
+    moveFront(win); lastApp=app; syncMobileNavigation(app);
     $$(`.dock-icon[data-app="${app}"]`).forEach(el=>el.classList.add('is-running'));
     if (app==='terminal') setTimeout(() => $('#terminalInput').focus(),200);
     if (app==='projects') resetDetail(false);
@@ -68,11 +106,21 @@
     win.classList.remove('is-open');
     setTimeout(() => { if (!win.classList.contains('is-open')) win.hidden = true; },240);
     $$(`.dock-icon[data-app="${app}"]`).forEach(el=>el.classList.remove('is-running'));
+    if (window.innerWidth<=600 && !$$('.app-window.is-open').length) syncMobileNavigation('home');
   }
   function closeAll(){ $$('.app-window.is-open').forEach(w=>closeApp(w.dataset.window)); }
-  function home(){closeAll();if (window.innerWidth>600) toast('Back to the desktop ✳');}
+  function home(){closeAll();syncMobileNavigation('home'); if (window.innerWidth<=600) $('#mobileHome').scrollTop = 0; else toast('Back to the desktop ✳');}
 
   document.addEventListener('click',e=>{
+    const mobileProject=e.target.closest('[data-project-open]');
+    if (mobileProject) {
+      const projectId=mobileProject.dataset.projectOpen;
+      openApp('projects');
+      // Keep project detail visible even after a filtered browse session.
+      $$('.browser-filter')[0]?.click();
+      openProject(projectId);
+      return;
+    }
     const app=e.target.closest('[data-app]');
     if(app) { e.preventDefault(); openApp(app.dataset.app); return; }
     const closer=e.target.closest('[data-close]'); if(closer){closeApp(closer.dataset.close);return;}
@@ -124,8 +172,10 @@
     const content=`<button type="button" class="detail-back" id="detailBack">← BACK TO ALL WORK</button>
       <div class="detail-art ${d.art}"><span class="art-toplabel">${d.category}</span>${d.decoration}<strong>${d.title}</strong><span class="art-bottomlabel">CHONG JUN HAO · SELECTED WORK</span></div>
       <span class="micro-label">SELECTED PROJECT / CASE STUDY</span><h2 style="font:600 34px 'Space Grotesk',sans-serif;letter-spacing:-.055em;margin:12px 0 6px">${d.name}</h2>
-      <p class="detail-intro">${d.headline}</p><div class="detail-cols"><div><h3>THE IDEA</h3><p>${d.intro}</p><h3>MY CONTRIBUTION</h3><p>${d.role}</p></div><div><h3>THE RESULT</h3><p>${d.outcome}</p><h3>FOCUS AREAS</h3><div class="detail-tags">${d.tags.map(t=>'<span>'+t+'</span>').join('')}</div></div></div>`;
+      <p class="detail-intro">${d.headline}</p>
+      <a class="case-study-open" href="projects/${d.slug}.html">OPEN COMPLETE CASE STUDY <span>↗</span></a><div class="detail-cols"><div><h3>THE IDEA</h3><p>${d.intro}</p><h3>MY CONTRIBUTION</h3><p>${d.role}</p></div><div><h3>THE RESULT</h3><p>${d.outcome}</p><h3>FOCUS AREAS</h3><div class="detail-tags">${d.tags.map(t=>'<span>'+t+'</span>').join('')}</div></div></div>`;
     const detail=$('#projectDetail');detail.innerHTML=content;detail.hidden=false;$('#browserMain').scrollTop=0;
+    addOptionalCover($('.detail-art',detail), editableProjects[key]?.media?.cover);
     $('#detailBack').addEventListener('click',()=>resetDetail());
   }
   $$('.project-tile').forEach(t=>t.addEventListener('click',()=>openProject(t.dataset.project)));
@@ -202,6 +252,7 @@
   function drawClock(){
     try{const now=new Date();$('#clock').textContent=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(now).replace(',',' ·');}catch(_){}
   }
+  if (location.hash==='#projects') { setBoot(false); openApp('projects'); }
   drawClock();setInterval(drawClock,30_000);
 
   // Decorative stars: local canvas, no external graphics service or GPU library needed.

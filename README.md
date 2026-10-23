@@ -1,3 +1,5 @@
+**V3 update:** Mobile-native home and bottom navigation, three independent case-study pages, and drop-in optional image/video support. See [`README_中文_素材放置指南.md`](README_中文_素材放置指南.md) for exact filenames and GitHub Desktop deployment steps.
+
 # CHONG JUN HAO · DARK DESKTOP PORTFOLIO OS
 
 An original dark interactive portfolio inspired by creative desktop-style websites, built for **GitHub Pages**.

@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/portfolio-data.js"></script>
   <script defer src="assets/main.js"></script>
   <title>Chong Jun Hao — Portfolio OS</title>
 </head>
@@ -74,6 +75,33 @@
     <div class="desktop-meta"><span>CHONG JUN HAO</span><span>PERSONAL PORTFOLIO / 2026</span><span>DESIGNED TO BE EXPLORED ↗</span></div>
   </main>
 
+
+  <!-- Mobile has its own touch-first landing page; desktop view remains intact. -->
+  <main class="mobile-home" id="mobileHome" aria-label="Mobile portfolio home">
+    <div class="mobile-home-inner">
+      <div class="mobile-intro-top"><span><i></i> AVAILABLE FOR OPPORTUNITIES</span><span>PORTFOLIO / 2026</span></div>
+      <div class="mobile-hero">
+        <div class="mobile-hero-orb" aria-hidden="true"><div class="mobile-ring mobile-ring-one"></div><div class="mobile-ring mobile-ring-two"></div><div class="mobile-core"></div></div>
+        <div class="mobile-hero-main"><span class="mobile-overline">DESIGN × CODE × INTELLIGENCE</span><h1>Hey, I'm<br><em>Jun Hao.</em><span class="mobile-hero-star">✳</span></h1><p>AI graduate &amp; developer shaping thoughtful digital experiences.</p><button class="mobile-main-cta" type="button" data-app="projects">Explore my projects <span>↗</span></button></div>
+      </div>
+      <div class="mobile-section-heading"><span>01 / FEATURED WORK</span><button type="button" data-app="projects">ALL PROJECTS <span>↗</span></button></div>
+      <div class="mobile-feature-list">
+        <button class="mobile-feature mobile-feature-batik" type="button" data-project-open="batik"><span class="mobile-feature-count">01 / AI &amp; CULTURE</span><strong>Batik Studio</strong><small>AI pattern generation · 3D garment visualisation</small><span class="mobile-feature-arrow">↗</span><span class="mobile-feature-decoration">✳</span></button>
+        <button class="mobile-feature mobile-feature-sccci" type="button" data-project-open="sccci"><span class="mobile-feature-count">02 / CLIENT EXPERIENCE</span><strong>SCCCI AI Theatre</strong><small>Conversational AI · Interaction design</small><span class="mobile-feature-arrow">↗</span><span class="mobile-feature-decoration">◎</span></button>
+        <button class="mobile-feature mobile-feature-nanao" type="button" data-project-open="nanao"><span class="mobile-feature-count">03 / AI &amp; TOURISM</span><strong>Nan’ao AI Guide</strong><small>Experience strategy · AI storytelling</small><span class="mobile-feature-arrow">↗</span><span class="mobile-feature-decoration">✦</span></button>
+      </div>
+      <div class="mobile-section-heading"><span>02 / QUICK ACCESS</span><span>YOUR NEXT TAP ↗</span></div>
+      <div class="mobile-widget-grid">
+        <button class="mobile-widget" type="button" data-app="about"><span class="widget-symbol">↗</span><span>01 / PROFILE</span><strong>About<br>me.</strong><i>Meet the human behind the work</i></button>
+        <button class="mobile-widget" type="button" data-app="experience"><span class="widget-symbol">✳</span><span>02 / JOURNEY</span><strong>My<br>path.</strong><i>Experience &amp; education</i></button>
+        <button class="mobile-widget" type="button" data-app="awards"><span class="widget-symbol">✦</span><span>03 / MILESTONES</span><strong>Selected<br>awards.</strong><i>Recognition &amp; highlights</i></button>
+        <button class="mobile-widget" type="button" data-app="skills"><span class="widget-symbol">⌘</span><span>04 / TOOLBOX</span><strong>My<br>stack.</strong><i>Tools I work with</i></button>
+      </div>
+      <div class="mobile-person"><div class="mobile-person-avatar profile-photo-wrap"><img class="real-photo" src="assets/media/profile/profile.jpg" alt="Portrait of Chong Jun Hao" decoding="async" /><span>JH</span></div><div><small>LET'S CREATE SOMETHING</small><h2>Have an idea?<br><em>Say hello.</em></h2><button type="button" data-app="contact">Let's talk <span>↗</span></button></div></div>
+      <div class="mobile-copyright">© 2026 CHONG JUN HAO <span>MADE WITH CURIOSITY ✳</span></div>
+    </div>
+  </main>
+
   <div class="window-layer" id="windowLayer">
     <!-- projects window -->
     <section class="app-window projects-window" id="win-projects" data-window="projects" role="dialog" aria-labelledby="title-projects" aria-modal="false" hidden>
@@ -94,7 +122,7 @@
 
     <section class="app-window content-window about-window" id="win-about" data-window="about" role="dialog" aria-modal="false" aria-labelledby="title-about" hidden>
       <header class="window-titlebar"><div class="traffic"><button class="traffic-close" data-close="about" aria-label="Close about"></button><button class="traffic-min" data-min="about" aria-label="Minimize about"></button><button class="traffic-max" data-max="about" aria-label="Maximize about"></button></div><span id="title-about" class="window-heading">about-me / profile.txt</span><span class="window-tail">01 / PROFILE</span></header>
-      <div class="window-scroll about-content"><div class="profile-top"><div class="profile-portrait"><div class="portrait-orbit"></div><strong>JH<span>✳</span></strong><small>CREATIVE BY NATURE.</small></div><div class="profile-head"><span class="micro-label"><i class="online-dot"></i> OPEN TO WHAT'S NEXT</span><h2>A little about<br><em>the human.</em></h2><p>Hi, I'm Jun Hao. I like finding the human side of technology — building useful tools, intuitive experiences and ideas that make people curious.</p><div class="small-chips"><span>JOHOR BAHRU, MY</span><span>AI GRADUATE</span><span>DEVELOPER × DESIGNER</span></div></div></div><div class="profile-lower"><div><span class="micro-label">MY APPROACH</span><h3>Think creatively.<br>Build thoughtfully.</h3></div><p>My background moves between interface design, on-site technical work and AI-powered interactive systems. From testing conversational responses for live exhibitions to developing AI concepts, I enjoy the entire process of turning an idea into an experience.</p></div><div class="stat-row"><div><strong>3.83<small>/ 4.00</small></strong><span>Degree CGPA</span></div><div><strong>1<sup>st</sup></strong><span>Class Honours</span></div><div><strong>2026</strong><span>Graduated</span></div></div><button class="inline-action" data-app="experience">Follow my journey <svg><use href="#i-arrow"/></svg></button></div>
+      <div class="window-scroll about-content"><div class="profile-top"><div class="profile-portrait profile-photo-wrap"><div class="portrait-orbit"></div><img class="real-photo" src="assets/media/profile/profile.jpg" alt="Chong Jun Hao profile photo" decoding="async" /><strong>JH<span>✳</span></strong><small>CREATIVE BY NATURE.</small></div><div class="profile-head"><span class="micro-label"><i class="online-dot"></i> OPEN TO WHAT'S NEXT</span><h2>A little about<br><em>the human.</em></h2><p>Hi, I'm Jun Hao. I like finding the human side of technology — building useful tools, intuitive experiences and ideas that make people curious.</p><div class="small-chips"><span>JOHOR BAHRU, MY</span><span>AI GRADUATE</span><span>DEVELOPER × DESIGNER</span></div></div></div><div class="profile-lower"><div><span class="micro-label">MY APPROACH</span><h3>Think creatively.<br>Build thoughtfully.</h3></div><p>My background moves between interface design, on-site technical work and AI-powered interactive systems. From testing conversational responses for live exhibitions to developing AI concepts, I enjoy the entire process of turning an idea into an experience.</p></div><div class="stat-row"><div><strong>3.83<small>/ 4.00</small></strong><span>Degree CGPA</span></div><div><strong>1<sup>st</sup></strong><span>Class Honours</span></div><div><strong>2026</strong><span>Graduated</span></div></div><button class="inline-action" data-app="experience">Follow my journey <svg><use href="#i-arrow"/></svg></button></div>
     </section>
 
     <section class="app-window content-window experience-window" id="win-experience" data-window="experience" role="dialog" aria-modal="false" aria-labelledby="title-experience" hidden>
@@ -138,6 +166,13 @@
     <button class="dock-icon" type="button" data-app="contact" title="Contact" aria-label="Open contact"><span class="dock-glyph dock-contact"><svg><use href="#i-mail"/></svg></span><span class="dock-dot"></span></button>
     <a class="dock-icon" href="resume.html" title="Résumé (new tab)" aria-label="Open resume" target="_blank" rel="noopener"><span class="dock-glyph dock-resume"><svg><use href="#i-file"/></svg></span><span class="dock-dot"></span></a>
   </div><span class="dock-caption">CLICK AN ICON TO EXPLORE <span>✳</span> <kbd>CTRL K</kbd> TO SEARCH</span></footer>
+
+  <nav class="mobile-tabbar" aria-label="Mobile navigation">
+    <button type="button" data-action="home" class="mobile-tab active" data-mobile-tab="home" aria-label="Home"><span class="mobile-tab-icon">⌂</span><span>Home</span></button>
+    <button type="button" data-app="projects" class="mobile-tab" data-mobile-tab="projects" aria-label="Projects"><svg><use href="#i-folder"/></svg><span>Work</span></button>
+    <button type="button" data-app="about" class="mobile-tab" data-mobile-tab="about" aria-label="About"><svg><use href="#i-user"/></svg><span>About</span></button>
+    <button type="button" data-app="contact" class="mobile-tab" data-mobile-tab="contact" aria-label="Contact"><svg><use href="#i-mail"/></svg><span>Contact</span></button>
+  </nav>
 </div>
 </body>
 </html>
