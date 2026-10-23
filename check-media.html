@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Batik Media Check | Jun Hao Portfolio</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{background:#09090e;color:#f1edf8;font:15px/1.6 system-ui,Segoe UI,sans-serif;margin:0}
+main{max-width:1050px;margin:auto;padding:34px 18px 100px}a{color:#c6a4ff}h1{font-size:clamp(28px,5vw,46px);margin:0}p{color:#b8adc8}
+.sub{font-size:13px}.badge{font-size:12px;border:1px solid #8a77a2;border-radius:99px;padding:4px 10px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.panel{background:#171420;border:1px solid #382c4a;border-radius:14px;padding:20px;margin:25px 0}
+button{background:#8256c8;color:white;border:0;border-radius:8px;padding:10px 19px;cursor:pointer;font-weight:600}button:disabled{opacity:.5}
+table{width:100%;border-collapse:collapse}th,td{padding:11px 7px;border-bottom:1px solid #352b3e;text-align:left;vertical-align:middle}th{font-size:12px;color:#aa99c1}td{overflow-wrap:anywhere}
+.ok{color:#99e3b9}.bad{color:#ffa39c}.muted{color:#a9a0b0}.pending{color:#ded3ea}code{background:#231b2d;padding:2px 6px;border-radius:4px}
+@media(max-width:580px){table{font-size:12px}td,th{padding:11px 4px}.last{display:none}}
+</style></head><body><main>
+<div class="top"><div><p class="sub"><a href="./projects/batik-studio.html">← 返回 Batik Studio</a></p><h1>Batik 媒体检查</h1><p>此页面检查 Github Pages 上真正可访问的文件，<b>不是</b>电脑本地文件。</p></div><button id="refresh">重新检测</button></div>
+<div class="panel"><div id="summary" aria-live="polite">准备检查…</div><p class="sub">上传路径必须是 <code>assets/media/batik/</code>，文件名与扩展名大小写敏感。图片允许 PNG、JPG、JPEG、WebP；证书也允许 PDF。<b>cover2、pipeline-diagram 和 demo.mp4 可选。</b></p></div>
+<table><thead><tr><th>媒体文件</th><th>结果</th><th>已找到格式</th><th class="last">打开文件</th></tr></thead><tbody id="results"></tbody></table>
+</main><script>
+const assets = [
+['封面', 'cover'],['平台截图','platform-overview'],
+['AI 图案 01','ai-pattern-01'],['AI 图案 02','ai-pattern-02'],['AI 图案 03','ai-pattern-03'],['AI 图案 04','ai-pattern-04'],['AI 图案 05','ai-pattern-05'],
+['T-shirt','garment-tshirt'],['Baju Kurung','garment-baju-kurung'],
+['书签成品','bookmark-product'],['书签现场','bookmark-event'],
+['DIGITEX 金奖证书','award-gold'],['DEIC 证书','deic-certificate'],['展览','exhibition'],
+['附加封面（可选）','cover2',true],['技术流程图（可选）','pipeline-diagram',true],['Demo 视频（可选）','demo',true]
+];
+const base = './assets/media/batik/';
+async function exists(url){try{const r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok;}catch{return false;}}
+async function check(label,name,optional){const extensions = name==='demo'?['mp4']:(name==='award-gold'||name==='deic-certificate'?['png','jpg','jpeg','webp','pdf']:['png','jpg','jpeg','webp']);
+for(const ext of extensions){const url=base+name+'.'+ext;if(await exists(url))return{label,name,optional,found:url,ext};}
+return{label,name,optional,found:null,ext:null};}
+let running=false;
+async function run(){if(running)return;running=true;const button=document.querySelector('#refresh');button.disabled=true;
+const tbody=document.querySelector('#results');tbody.textContent='';document.querySelector('#summary').textContent='正在核对 '+assets.length+' 个媒体位置…';
+const items=await Promise.all(assets.map(x=>check(...x)));let ok=0,missing=0;
+for(const item of items){if(item.found)ok++;else if(!item.optional)missing++;
+const tr=document.createElement('tr');const title=document.createElement('td');title.textContent=item.label+' ('+item.name+')';
+const status=document.createElement('td');status.textContent=item.found?'✓ FOUND':(item.optional?'可选 / 未上传':'✕ NOT FOUND');status.className=item.found?'ok':(item.optional?'muted':'bad');
+const extension=document.createElement('td');extension.textContent=item.ext||'—';
+const linkTd=document.createElement('td');linkTd.className='last';if(item.found){const a=document.createElement('a');a.href=item.found;a.target='_blank';a.rel='noopener';a.textContent='打开';linkTd.append(a)}else{linkTd.textContent='—';}
+tr.append(title,status,extension,linkTd);tbody.append(tr)}
+const sum=document.querySelector('#summary');sum.textContent='已找到 '+ok+' 项；缺失 '+missing+' 项必需素材。'+(missing?'请检查 GitHub Desktop 是否 Push、文件目录、扩展名与大小写。':'全部必需媒体路径正常。');button.disabled=false;running=false;}
+document.querySelector('#refresh').addEventListener('click',run);run();
+</script></body></html>

@@ -62,10 +62,12 @@
   function addOptionalCover(container, path) {
     if (!container || !path) return;
     const img = new Image(); img.className = 'real-project-cover'; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-    img.addEventListener('load', () => { container.appendChild(img); container.classList.add('has-cover'); }, {once:true});
+    img.style.visibility = 'hidden';
+    container.appendChild(img); // V4.2: lazy loading needs a connected image.
+    img.addEventListener('load', () => { img.style.visibility = ''; container.classList.add('has-cover'); }, {once:true});
     const candidates = /\/batik\//.test(path) ? [...new Set([path.replace(/\.(jpg|jpeg|png|webp)$/i, '.png'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpeg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')])] : [path];
     let i = 0;
-    img.addEventListener('error', () => { if (++i < candidates.length) img.src = candidates[i]; });
+    img.addEventListener('error', () => { if (++i < candidates.length) img.src = candidates[i]; else img.remove(); });
     img.src = candidates[0];
   }
   Object.entries(editableProjects).forEach(([key, project]) => {

@@ -1,3 +1,6 @@
+## V4.2 image loading fix
+Fixed lazy-loading of detached images in the Batik gallery and homepage project cards. Added `check-media.html` media diagnostic page to verify assets actually exist on GitHub Pages. No real image or video is bundled.
+
 ## V4.1 media patch
 Supports Batik images in original PNG/JPG/JPEG/WebP, certificate PDFs as linked cards, a fifth pattern image, optional cover2, and an optional demo video. No real media is included in the ZIP.
 

@@ -23,8 +23,12 @@
     picture.alt = box.dataset.alt || 'Batik Studio project image';
     picture.decoding = 'async';
     picture.loading = (box.classList.contains('b-hero-visual') || box.hasAttribute('hidden')) ? 'eager' : 'lazy';
+    // V4.2 fix: register the image in the DOM BEFORE starting its load.
+    // Detached images with loading='lazy' can remain unrequested indefinitely.
+    picture.style.visibility = 'hidden';
+    box.insertBefore(picture, box.firstChild);
     picture.addEventListener('load', () => {
-      box.insertBefore(picture, box.firstChild);
+      picture.style.visibility = '';
       box.hidden = false;
       box.classList.add('b-loaded');
       picture.tabIndex = 0;
@@ -45,6 +49,7 @@
     }, {once: true});
     picture.addEventListener('error', () => {
       if (++idx < candidates.length) { picture.src = candidates[idx]; return; }
+      picture.remove();  // Keep the styled placeholder instead of a broken image.
       // PDF certificates: show a usable document card without image conversion.
       if (box.closest('.b-certificate-gallery')) {
         const basename = box.dataset.img.replace(/\.(jpg|jpeg|png|webp)$/i, '');

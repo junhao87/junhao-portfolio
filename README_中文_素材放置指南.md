@@ -1,3 +1,17 @@
+# V4.2 图片不显示修复 / 重要
+
+旧版 V4.1 将部分 `loading="lazy"` 图片留在 DOM 外等待下载，造成某些浏览器不开始加载。V4.2 已修复 Batik 图片画廊和首页项目封面。
+
+上传 V4.2 源码后，**还必须把你的实际 PNG、JPEG、PDF、MP4 复制到 `assets/media/batik/`**（ZIP 没有你的原始素材）。
+
+上传成功后，打开 `https://junhao87.github.io/junhao-portfolio/check-media.html`：网页自动报告 FOUND / NOT FOUND，可快速辨认哪些文件在 GitHub 端缺失。
+
+你当前的文件名可以原样保留：`cover.png`、`ai-pattern-01.png`…`ai-pattern-05.png`、`award-gold.png`/`.pdf`、`deic-certificate.png`/`.pdf`。WPS JPEG 可能是真正的 `.jpg` **或者** `.jpeg`；请在 Windows Explorer 启用“文件扩展名”并核对。
+
+删除 `cover2` 是允许的，它不会影响页面。Video `demo.mp4` 可以后期再上传；已有 53MB 视频时需要通过 GitHub Desktop 提交并等待 Pages 部署。若播放不了，检查 MP4 是否使用 H.264 视频编码与 AAC 音频编码。
+
+---
+
 # V4.1 说明：现有 PNG、JPEG、PDF 素材，不用改图片扩展名
 
 截图里的文件格式：`cover.png`、`cover2.png`、`platform-overview.png`、`ai-pattern-01.png` 至 `ai-pattern-05.png`、`garment-baju-kurung.png` 等可以直接保留；`bookmark-product.jpeg/jpg`、`bookmark-event.jpeg/jpg`、`garment-tshirt.jpeg/jpg`、`exibition.jpeg/jpg`（正确拼写 `exhibition`）可直接保留。
