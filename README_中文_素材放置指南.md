@@ -1,3 +1,16 @@
+# V4.1 说明：现有 PNG、JPEG、PDF 素材，不用改图片扩展名
+
+截图里的文件格式：`cover.png`、`cover2.png`、`platform-overview.png`、`ai-pattern-01.png` 至 `ai-pattern-05.png`、`garment-baju-kurung.png` 等可以直接保留；`bookmark-product.jpeg/jpg`、`bookmark-event.jpeg/jpg`、`garment-tshirt.jpeg/jpg`、`exibition.jpeg/jpg`（正确拼写 `exhibition`）可直接保留。
+
+- V4.1 对 Batik 页面原始 `JPG / JPEG / PNG / WebP` 自动兼容。**不要只把 PNG 改名 JPG**。
+- 额外素材 `cover2` 现在是可选展示，`ai-pattern-05` 现在也加入图样画廊。
+- `award-gold.pdf`、`deic-certificate.pdf` 若没有同名图片，在线 GitHub Pages 将展示 **VIEW CERTIFICATE / OPEN PDF** 卡片链接；如希望证书直接显示完整视觉，请通过 WPS/Acrobat 将 PDF 第一页导出成 **award-gold.png** 和 **deic-certificate.png**（PDF 可以同时保留）。
+- 不放 `demo.mp4` 时，整段 Demonstration 视频模块会自动隐藏；日后上传 `demo.mp4` 后自动显示。
+- Windows 资源管理器：**查看 → 显示 → 文件扩展名**，确认真实后缀。路径大小写必须匹配。
+- 建议使用 GitHub Desktop 提交资源，`Commit to main`、`Push origin`。
+
+---
+
 # V4 Batik Studio 专项更新（保留 V3 电脑版与手机版）
 
 这一版主要完善 `projects/batik-studio.html`，没有重新设计 SCCCI 或 Nan’ao。

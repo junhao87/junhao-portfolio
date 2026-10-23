@@ -1,3 +1,6 @@
+## V4.1 media patch
+Supports Batik images in original PNG/JPG/JPEG/WebP, certificate PDFs as linked cards, a fifth pattern image, optional cover2, and an optional demo video. No real media is included in the ZIP.
+
 # Chong Jun Hao — Portfolio V4 (Batik Studio case study)
 
 V4 preserves the V3 dark desktop/mobile portfolio and upgrades only the Batik Studio narrative, media layout, and research summary.
