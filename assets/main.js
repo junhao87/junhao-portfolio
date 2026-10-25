@@ -65,7 +65,7 @@
     img.style.opacity = '0';
     container.appendChild(img); // V4.2: lazy loading needs a connected image.
     img.addEventListener('load', () => { if (!img.naturalWidth) return; img.style.opacity = '1'; container.classList.add('has-cover'); }, {once:true});
-    const candidates = /\/batik\//.test(path) ? [...new Set([path.replace(/\.(jpg|jpeg|png|webp)$/i, '.png'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpeg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')])] : [path];
+    const candidates = /\/(batik|sccci)\//.test(path) ? [...new Set([path.replace(/\.(jpg|jpeg|png|webp)$/i, '.png'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpeg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')])] : [path];
     let i = 0;
     img.addEventListener('error', () => { if (++i < candidates.length) img.src = candidates[i]; else img.remove(); });
     img.src = candidates[0];

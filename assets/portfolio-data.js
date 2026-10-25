@@ -31,21 +31,21 @@ window.JH_CONTENT = {
     sccci: {
       slug: 'sccci-ai-theatre',
       name: 'SCCCI AI Theatre',
-      kind: 'CLIENT PROJECT / INTERACTIVE AI', year: '2026', number: '02',
-      tagline: 'History and storytelling become a conversation.',
-      summary: 'A client-facing AI interactive experience supporting the Singapore Chinese Chamber of Commerce & Industry programme.',
-      challenge: 'Translate business history and reference material into an engaging, reliable AI interaction for visitors.',
-      approach: 'Structure AI response flows, organise content, test user interactions and refine the experience around client expectations.',
-      contribution: 'Supported response flow design, user interaction logic, content refinement, testing and delivery materials within the project team.',
-      result: 'Hands-on experience contributing to a live client project; visual evidence and specific technical results will be added when supplied and approved for public use.',
+      kind: 'REAL CLIENT PROJECT / AI CHATBOT', year: '2026', number: '02',
+      tagline: 'Making 120 years of history conversational.',
+      summary: 'Developed an AI-powered bilingual knowledge assistant using a hybrid FAQ and RAG workflow as part of SCCCI’s 120th anniversary interactive experience.',
+      challenge: 'Provide visitors with institution-specific SCCCI information grounded in curated source materials, rather than relying on a general-purpose chatbot alone.',
+      approach: 'Built a FastAPI chatbot component with structured bilingual FAQs, ChromaDB retrieval, document ingestion, OpenAI models, and a web-based testing interface.',
+      contribution: 'Junior Programmer Intern at Digital Magic Studio. Responsible for the AI chatbot backend, hybrid FAQ and RAG knowledge retrieval, bilingual response refinement, testing, and documentation support within the project team.',
+      result: 'The AI chatbot component was incorporated into the SCCCI 120th anniversary commemorative interactive experience in 2026. The development version includes 50 FAQ entries across English and Chinese.',
       process: [
-        ['01', 'Understand content', 'Review reference material and the desired visitor experience.'],
-        ['02', 'Develop interactions', 'Support AI response structure, conversation flow and testing.'],
-        ['03', 'Refine for delivery', 'Improve behaviour based on tests and client feedback.']
+        ['01', 'Curate knowledge', 'Prepare SCCCI history, organizational documents and 25 English plus 25 Chinese FAQ entries.'],
+        ['02', 'Engineer retrieval', 'Implement FastAPI, FAQ matching, semantic retrieval through ChromaDB, and context-grounded generation.'],
+        ['03', 'Test and integrate', 'Refine bilingual responses, source inspection, and client-oriented integration deliverables.']
       ],
-      tags: ['Conversational AI','Interaction Logic','Testing','Client Collaboration'],
-      note: 'Only share client-approved screenshots, datasets and videos.',
-      media: {cover:'assets/media/sccci/cover.jpg',screen1:'assets/media/sccci/01.jpg',screen2:'assets/media/sccci/02.jpg',video:'assets/media/sccci/demo.mp4'}
+      tags: ['Python', 'FastAPI', 'RAG', 'ChromaDB', 'OpenAI', 'Bilingual NLP', 'FAQ Engine'],
+      note: 'This case study credits only the chatbot component I developed within the wider Digital Magic Studio production team. Client-sensitive materials are not included.',
+      media: {cover:'assets/media/sccci/event-panorama.jpg',screen1:'assets/media/sccci/chatbot-interface.png',screen2:'assets/media/sccci/faq-testing.png',video:'assets/media/sccci/demo.mp4'}
     },
     nanao: {
       slug: 'nanao-ai-guide',
