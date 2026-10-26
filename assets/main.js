@@ -32,6 +32,16 @@
     }
   };
 
+  // Diploma-era design projects are sourced from the uploaded 25-screenshot archive.
+  (window.JH_UIUX_PROJECTS || []).forEach((p) => {
+    projectData['uiux_'+p.id] = {
+      name:p.name, category:'MY SERVE SOLUTIONS · UI/UX · 2023–24',
+      headline:p.angle, art:'art-uiux', title:p.name.toUpperCase().replace(/ /g,'<br>'),
+      decoration:'<img class="uiux-detail-cover" src="'+p.cover+'" alt="" loading="eager">',
+      intro:p.intro, role:p.contribution, outcome:p.summary,
+      tags:['UI/UX','Frontend Design','Final Interface Showcase'], slug:'uiux-'+p.slug
+    };
+  });
   // Single source of truth for portfolio descriptions and case studies.
   const editableProjects = window.JH_CONTENT?.projects || {};
   Object.entries(editableProjects).forEach(([id, content]) => {
@@ -197,7 +207,7 @@
   const terminalResponses={
     help:terminalHelp,
     about:'CHONG JUN HAO — AI graduate, junior software developer & curious maker.\nBased in Johor Bahru, Malaysia.',
-    projects:'01  Batik Studio — AI generation + 3D garment visualisation\n02  SCCCI AI Theatre — interactive AI client project\n03  MindScape Travel — AI emotion-driven tourism',
+    projects:'03 AI & Software case studies + 06 UI/UX & Frontend projects. Open the Projects folder to explore all 09 projects.',
     skills:'Python, JavaScript, HTML/CSS, PHP, Computer Vision, NLP, AI Model Evaluation, MySQL, UI/UX.',
     experience:'2026—present  Digital Magic Studio (Freelance AI Project Assistant)\n2025—2026      Digital Magic Studio (Intern)\n2023—2024      My Serve Solutions (UI/UX Intern)',
     awards:'DIGITEX Gold 2026 · DIGITEX Silver 2026 · Nan’ao Second Prize 2025 · Indigo Silver 2026 · Kancil Merit 2025',
@@ -227,7 +237,8 @@
     {id:'resume',name:'View Résumé',icon:'i-file',type:'LINK'},
     {id:'batik',name:'Batik Studio',icon:'i-folder',type:'PROJECT'},
     {id:'sccci',name:'SCCCI AI Theatre',icon:'i-folder',type:'PROJECT'},
-    {id:'nanao',name:'MindScape Travel',icon:'i-folder',type:'PROJECT'}];
+    {id:'nanao',name:'MindScape Travel',icon:'i-folder',type:'PROJECT'},
+    ...(window.JH_UIUX_PROJECTS || []).map(p=>({id:'uiux_'+p.id,name:p.name,icon:'i-folder',type:'PROJECT'}))];
   let matching=[],activeMatch=0;
   function drawMatches(){
     const term=$('#launcherInput').value.toLowerCase().trim();
