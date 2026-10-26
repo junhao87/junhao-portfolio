@@ -88,6 +88,51 @@
     };
     tryPhoto();
   });
+  // V5.2: Click or tap any visible Journey photo to view the original image.
+  // Escape, the close button, and the dimmed backdrop all close the preview.
+  const experienceLightbox = $('#experienceLightbox');
+  const experiencePreview = $('#experienceLightboxImage');
+  const experiencePreviewCaption = $('#experienceLightboxCaption');
+  const experiencePreviewClose = $('#experienceLightboxClose');
+  let experiencePreviousFocus = null;
+  function closeExperiencePreview() {
+    if (experienceLightbox.hidden) return;
+    experienceLightbox.hidden = true;
+    experiencePreview.removeAttribute('src');
+    if (experiencePreviousFocus?.isConnected && !experiencePreviousFocus.closest('[hidden]')) {
+      experiencePreviousFocus.focus({preventScroll:true});
+    }
+    experiencePreviousFocus = null;
+  }
+  $$('.experience-photo-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const frame = trigger.closest('.experience-photo');
+      const photo = $('img', trigger);
+      if (!photo || frame.hidden || !photo.naturalWidth) return;
+      experiencePreviousFocus = trigger;
+      experiencePreview.src = photo.currentSrc || photo.src;
+      experiencePreview.alt = photo.alt;
+      experiencePreviewCaption.textContent = $('figcaption', frame)?.textContent || 'Selected work photo';
+      experienceLightbox.hidden = false;
+      experiencePreviewClose.focus({preventScroll:true});
+    });
+  });
+  $$('[data-lightbox-close]', experienceLightbox).forEach(button => {
+    button.addEventListener('click', closeExperiencePreview);
+  });
+  experiencePreviewClose.addEventListener('click', closeExperiencePreview);
+  document.addEventListener('keydown', event => {
+    if (experienceLightbox.hidden) return;
+    if (event.key === 'Escape') {
+      event.preventDefault(); event.stopImmediatePropagation();
+      closeExperiencePreview();
+    } else if (event.key === 'Tab') {
+      // Only the close button is actionable while this preview is open.
+      event.preventDefault();
+      experiencePreviewClose.focus({preventScroll:true});
+    }
+  }, true);
+
   function syncMobileNavigation(app) {
     $$('.mobile-tab').forEach(tab => {
       const active = tab.dataset.mobileTab === app;
@@ -239,7 +284,7 @@
     skills:'Python, JavaScript, HTML/CSS, PHP, Computer Vision, NLP, AI Model Evaluation, MySQL, UI/UX.',
     experience:'2026—present  Digital Magic Studio (Freelance AI Project Assistant)\n2025—2026      Digital Magic Studio (Intern)\n2023—2024      My Serve Solutions (UI/UX Intern)',
     awards:'DIGITEX Gold 2026 · DIGITEX Silver 2026 · Nan’ao Second Prize 2025 · Indigo Silver 2026 · Kancil Merit 2025',
-    contact:'Say hello: junhaochong5@gmail.com'
+    contact:'Email: junhaochong5@gmail.com\nPhone: 0165092577'
   };
   const terminalForm=$('#terminalForm'), terminalOutput=$('#terminalOutput'), terminalInput=$('#terminalInput');
   terminalForm.addEventListener('submit',e=>{

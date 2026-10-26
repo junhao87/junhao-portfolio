@@ -5,6 +5,7 @@ window.JH_CONTENT = {
   person: {
     name: 'Chong Jun Hao',
     email: 'junhaochong5@gmail.com',
+    phone: '0165092577',
     location: 'Johor Bahru, Malaysia',
     profilePhoto: 'assets/media/profile/profile.jpg'
   },
