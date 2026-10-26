@@ -60,6 +60,14 @@
     photo.addEventListener('error', () => { photo.hidden = true; });
     if (photo.complete && photo.naturalWidth) photo.parentElement.classList.add('has-photo');
   });
+  // Timeline work photos are optional; show only after a real image loads.
+  $$('.experience-photo img').forEach(img => {
+    const frame = img.closest('.experience-photo');
+    const reveal = () => { if (img.naturalWidth > 0) frame.hidden = false; };
+    img.addEventListener('load', reveal);
+    img.addEventListener('error', () => { frame.hidden = true; });
+    if (img.complete && img.naturalWidth > 0) reveal();
+  });
   function syncMobileNavigation(app) {
     $$('.mobile-tab').forEach(tab => {
       const active = tab.dataset.mobileTab === app;

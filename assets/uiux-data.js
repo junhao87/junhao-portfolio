@@ -203,11 +203,11 @@ window.JH_UIUX_PROJECTS = [
     "slug": "rustdesk",
     "name": "RustDesk",
     "kind": "INTERFACE CUSTOMIZATION",
-    "card": "Selected remote-access interface and web presentation screens.",
+    "card": "Selected user guide and web presentation screens for an updated RustDesk experience.",
     "intro": "Two supplied visuals documenting work around a RustDesk-related interface and supporting web presentation. They are showcased as final/reference screens, not as a before-and-after comparison.",
     "contribution": "UI presentation and customization-related work in a My Serve Solutions design context. Exact product-level changes are not claimed without further implementation details.",
     "angle": "Interface study and presentation",
-    "summary": "The two screenshots show a remote-access application screen and a RustDesk web page.",
+    "summary": "The two screenshots show how to use the updated RustDesk version and a related web page.",
     "features": [
       "Remote-access screen presentation",
       "Web page layout study"
@@ -216,7 +216,7 @@ window.JH_UIUX_PROJECTS = [
     "images": [
       {
         "file": "assets/media/uiux/rustdesk/01.jpeg",
-        "caption": "Remote-access application screen",
+        "caption": "How to Use the Updated Version of RustDesk",
         "w": 960,
         "h": 1280,
         "old": "WhatsApp Image 2023-11-19 at 9.37.53 PM.jpeg"

@@ -127,3 +127,18 @@
 
 /* V4.6: MindScape travel tile matches the dark emotional-tourism palette. */
 .art-nanao{background:radial-gradient(circle at 79% 36%,#ad81c76b,transparent 37%),linear-gradient(145deg,#292342,#181a2e);color:#f6eaff}
+
+/* V5.0 / EXPERIENCE TIMELINE / OPTIONAL WORK PHOTO GALLERY */
+.exp-achievements{margin:11px 0 4px;padding-left:18px;color:#c3b9da;font-size:11px;line-height:1.75}
+.exp-achievements li{padding:2px 0}
+.experience-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:13px 0 3px}
+.experience-photo-grid:has(> .experience-photo[hidden]:first-child):has(> .experience-photo[hidden]:last-child){display:none}
+.experience-photo[hidden]{display:none!important}
+.experience-photo{min-width:0;margin:0;position:relative;border:1px solid rgba(182,159,241,.24);border-radius:9px;overflow:hidden;background:#15131f}
+.experience-photo:only-of-type{grid-column:span 2}
+.experience-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;transition:transform .35s ease}
+.experience-photo:hover img{transform:scale(1.045)}
+.experience-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:14px 9px 7px;background:linear-gradient(transparent,rgba(10,10,17,.86));font:500 9px 'DM Mono',monospace;letter-spacing:.04em;color:#eee8ff}
+@media(max-width:600px){.exp-item time{font-size:10px}.exp-item h4{font-size:15px}.exp-item strong{font-size:12px}.exp-item p,.exp-achievements{font-size:12px}.experience-photo-grid{gap:8px}.experience-photo img{aspect-ratio:5/4}}
+
+.experience-photo-grid>.experience-photo:not([hidden]):nth-child(1):has(+ .experience-photo[hidden]),.experience-photo-grid>.experience-photo[hidden]:first-child + .experience-photo:not([hidden]){grid-column:1/-1}
