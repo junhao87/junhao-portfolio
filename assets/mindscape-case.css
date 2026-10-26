@@ -44,3 +44,20 @@
   .m-cover{height:275px}
 }
 @media(max-width:350px){.m-app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.m-app-shot{height:255px}.m-visual-shot{flex-basis:82vw}}
+
+/* V4.8 — evidence-led Times Young Awards gallery & simplified feedback section */
+.m-times-intro{margin-top:34px;margin-bottom:15px}
+.m-times-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.m-times-cert{height:clamp(320px,36vw,490px)}
+.m-times-cert>img{background:#11101b;object-fit:contain;padding:8px}
+.m-times-cert .m-fallback strong{font-size:clamp(24px,3vw,38px)}
+.m-times-cert figcaption{max-width:calc(100% - 24px);font-size:11px}
+.m-times-note{margin:16px 0 0;color:#bdb0cd}
+.m-feedback-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.m-feedback-flow article{min-width:0;min-height:200px;background:linear-gradient(160deg,#242035,#12111d);border:1px solid #ffffff28;border-radius:12px;padding:26px;display:flex;flex-direction:column}
+.m-feedback-flow small{color:#c9aff6;font:500 11px 'DM Mono',monospace}
+.m-feedback-flow h3{font:600 clamp(20px,2.1vw,27px)/1.2 'Space Grotesk',sans-serif;letter-spacing:-.045em;margin:27px 0 12px}
+.m-feedback-flow p{font-size:14px;line-height:1.65;margin:0}
+@media(max-width:850px){.m-times-gallery{gap:10px}.m-times-cert{height:335px}.m-feedback-flow article{padding:20px;min-height:200px}}
+@media(max-width:620px){.m-times-gallery{grid-template-columns:1fr;gap:13px}.m-times-cert{height:390px}.m-times-cert figcaption{font-size:11px}.m-feedback-flow{grid-template-columns:1fr;gap:10px}.m-feedback-flow article{min-height:0;padding:19px}.m-feedback-flow h3{margin:12px 0 8px;font-size:23px}.m-feedback-flow p{font-size:14px}.m-times-intro{margin-top:27px}}
+@media(max-width:360px){.m-times-cert{height:335px}}

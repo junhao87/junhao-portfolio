@@ -11,6 +11,9 @@
     'exhibition':['exhibition','event','exhibition-photo'],
     'digitex-silver':['digitex-silver','award-silver','digitex-certificate'],
     'times-young-creative':['times-young-creative','times-award','times-certificate'],
+    'times-finalist-brand':['times-finalist-brand'],
+    'times-finalist-future':['times-finalist-future'],
+    'times-finalist-digital':['times-finalist-digital'],
     'visual-spirit':['visual-spirit'],
     'visual-inspiration':['visual-inspiration']
   };
