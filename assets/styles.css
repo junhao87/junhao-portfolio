@@ -191,3 +191,65 @@
     max-width:calc(100% - 145px);overflow:hidden;text-overflow:ellipsis
   }
 }
+
+/* V5.4 — Fix overlapping titles after adding a right-side close button.
+   Legacy .window-heading used position:absolute at left:50%, so it could
+   overlap the status label or the new close button. Give every region its
+   own real grid column instead of painting them on top of each other. */
+.window-titlebar:has(> .window-close-x) {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto 32px;
+  align-items: center;
+  column-gap: 12px;
+}
+.window-titlebar:has(> .window-close-x) .traffic {
+  grid-column: 1;
+  min-width: 0;
+  justify-self: start;
+}
+.window-titlebar:has(> .window-close-x) .window-heading {
+  grid-column: 2;
+  position: static;
+  transform: none;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.window-titlebar:has(> .window-close-x) .window-tail {
+  grid-column: 3;
+  margin-left: 0;
+  white-space: nowrap;
+  min-width: 0;
+  justify-self: end;
+}
+.window-titlebar:has(> .window-close-x) .window-close-x {
+  grid-column: 4;
+  justify-self: end;
+  flex: none;
+  margin: 0;
+  width: 32px;
+  height: 32px;
+}
+@media (max-width: 750px) {
+  .window-titlebar:has(> .window-close-x) {
+    grid-template-columns: 48px minmax(0,1fr) 36px;
+    column-gap: 8px;
+  }
+  .window-titlebar:has(> .window-close-x) .window-tail {
+    display: none;
+  }
+  .window-titlebar:has(> .window-close-x) .window-close-x {
+    grid-column: 3;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+  }
+  .window-titlebar:has(> .window-close-x) .window-heading {
+    max-width: 100%;
+  }
+}
