@@ -167,3 +167,27 @@
 .experience-lightbox-image{display:block;width:100%;height:auto;max-height:calc(100dvh - 175px);object-fit:contain;border-radius:6px;background:#07070d}
 .experience-lightbox-caption{margin:0;color:#d8d2e7;font:500 12px 'DM Sans',sans-serif;letter-spacing:.04em}
 @media(max-width:600px){.contact-phone{margin-bottom:21px}.contact-phone strong{font-size:18px}.experience-lightbox{padding:10px}.experience-lightbox-panel{padding:11px;border-radius:10px}.experience-lightbox-image{max-height:calc(100dvh - 138px)}.experience-lightbox-header{font-size:9px}.experience-lightbox-close span{display:none}}
+
+
+/* V5.3: Clear X close control on the six main desktop/mobile app windows.
+   Existing data-close event delegation in main.js handles its action. */
+.window-close-x {
+  appearance:none; -webkit-appearance:none;
+  flex:0 0 32px; width:32px; height:32px;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-left:12px; border:1px solid rgba(207,202,240,.27);
+  border-radius:9px; background:rgba(255,255,255,.065);
+  color:#ece9f5; font:400 24px/1 Arial,sans-serif;
+  cursor:pointer; position:relative; z-index:5;
+  transition:background .16s,border-color .16s,transform .16s;
+}
+.window-close-x:hover {background:rgba(243,134,145,.19);border-color:#f38691;color:#fff;transform:scale(1.04)}
+.window-close-x:focus-visible {outline:2px solid #c8b5ff;outline-offset:3px}
+.window-titlebar:has(>.window-close-x) .window-tail {margin-left:auto}
+@media(max-width:600px) {
+  .window-titlebar:has(>.window-close-x) .window-tail {display:none}
+  .window-close-x {width:36px;height:36px;flex-basis:36px;margin-left:auto;font-size:27px}
+  .window-titlebar:has(>.window-close-x) .window-heading {
+    max-width:calc(100% - 145px);overflow:hidden;text-overflow:ellipsis
+  }
+}
