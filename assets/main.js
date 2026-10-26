@@ -60,13 +60,33 @@
     photo.addEventListener('error', () => { photo.hidden = true; });
     if (photo.complete && photo.naturalWidth) photo.parentElement.classList.add('has-photo');
   });
-  // Timeline work photos are optional; show only after a real image loads.
-  $$('.experience-photo img').forEach(img => {
+  // V5.1: Work photos are optional and may be JPG, JPEG, PNG or WebP.
+  // Probe with a detached image first: a hidden <figure> must not prevent loading.
+  // GitHub Pages paths are case-sensitive; keep the basename lower-case.
+  const photoExtensions = ['jpg','jpeg','png','webp','JPG','JPEG','PNG','WEBP'];
+  $$('.experience-photo img[data-photo-base]').forEach(img => {
     const frame = img.closest('.experience-photo');
-    const reveal = () => { if (img.naturalWidth > 0) frame.hidden = false; };
-    img.addEventListener('load', reveal);
-    img.addEventListener('error', () => { frame.hidden = true; });
-    if (img.complete && img.naturalWidth > 0) reveal();
+    const base = img.dataset.photoBase;
+    let attempt = 0;
+    let probe = null;
+    const tryPhoto = () => {
+      if (attempt >= photoExtensions.length) {
+        frame.hidden = true;
+        frame.dataset.photoStatus = 'not-found';
+        return;
+      }
+      const url = base + '.' + photoExtensions[attempt++];
+      probe = new Image();
+      probe.onload = () => {
+        if (!probe.naturalWidth) { tryPhoto(); return; }
+        img.src = url;
+        frame.hidden = false;
+        frame.dataset.photoStatus = 'found';
+      };
+      probe.onerror = tryPhoto;
+      probe.src = url;
+    };
+    tryPhoto();
   });
   function syncMobileNavigation(app) {
     $$('.mobile-tab').forEach(tab => {

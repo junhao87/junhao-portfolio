@@ -5,15 +5,15 @@ window.JH_UIUX_PROJECTS = [
     "name": "Plant Shop",
     "kind": "MOBILE APP INTERFACES",
     "card": "Plant care, community and day-to-day tracking in one mobile experience.",
-    "intro": "A multi-screen mobile interface showcase focused on plant care, shopping, community posts, schedules and account flows.",
+    "intro": "A selected set of mobile screens for plant care, plant swapping, community interaction and store checking.",
     "contribution": "Frontend screen design, visual layout refinement, component styling and interface presentation during my diploma-era My Serve Solutions work.",
     "angle": "A connected set of mobile screens",
-    "summary": "Eleven app screens present account entry, community browsing, plant content, reminders, scheduling and task management.",
+    "summary": "Ten selected app screens showing account entry, plant swapping, store checking, community browsing and plant care workflows.",
     "features": [
       "Onboarding & account screens",
-      "Plant information and store views",
-      "Community feed and post pages",
-      "Notifications, health and tasks"
+      "Swapping Plants Page",
+      "Community and plant care",
+      "Online Store Checker"
     ],
     "accent": "#93c9a6",
     "images": [
@@ -53,22 +53,15 @@ window.JH_UIUX_PROJECTS = [
         "old": "post info.png"
       },
       {
-        "file": "assets/media/uiux/plant-shop/06.png",
-        "caption": "Plant store detail",
-        "w": 450,
-        "h": 920,
-        "old": "store info.png"
-      },
-      {
         "file": "assets/media/uiux/plant-shop/07.png",
-        "caption": "Plant health information",
+        "caption": "Swapping Plants Page",
         "w": 402,
         "h": 881,
         "old": "plant health view1.png"
       },
       {
         "file": "assets/media/uiux/plant-shop/08.png",
-        "caption": "Notifications",
+        "caption": "Online Store Checker",
         "w": 894,
         "h": 1812,
         "old": "Notification (JUNHAO).png"
