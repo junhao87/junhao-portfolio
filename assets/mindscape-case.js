@@ -10,7 +10,9 @@
     'app-04':['app-04','screenshot-04','04'],
     'exhibition':['exhibition','event','exhibition-photo'],
     'digitex-silver':['digitex-silver','award-silver','digitex-certificate'],
-    'times-young-creative':['times-young-creative','times-award','times-certificate']
+    'times-young-creative':['times-young-creative','times-award','times-certificate'],
+    'visual-spirit':['visual-spirit'],
+    'visual-inspiration':['visual-inspiration']
   };
   const modal = document.getElementById('mLightbox');
   const modalImg = modal.querySelector('img');

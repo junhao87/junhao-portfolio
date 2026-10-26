@@ -19,3 +19,28 @@
 @media(prefers-reduced-motion:reduce){.m-orbit-glow{animation:none}}
 /* Keep the optional-video placeholder from expanding 320px displays. */
 .m-video-box,.m-video-empty{min-width:0;width:100%;max-width:100%}.m-video-empty p{overflow-wrap:anywhere;max-width:100%}
+
+
+/* V4.7 / Actual photo integration — preserves the original black-violet system. */
+.m-cover::before{content:"";position:absolute;inset:-24px;background:url('media/nanao/cover.png') center/cover no-repeat;filter:blur(25px) brightness(.37) saturate(.78);opacity:.9;z-index:0}
+.m-cover[data-fit="contain"]>img{object-fit:contain;padding:0;background:transparent}
+.m-cover .m-fallback{z-index:1}
+.m-cover.m-loaded .m-fallback{visibility:hidden}
+.m-art-intro{margin-top:26px}
+.m-visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.m-visual-shot{aspect-ratio:1.36}
+.m-visual-shot>img{object-fit:cover}
+.m-visual-shot .m-fallback{padding:18px}
+.m-visual-shot .m-fallback strong{font-size:clamp(22px,3vw,44px)}
+.m-visual-shot figcaption{font-size:11px}
+.m-app-shot{height:clamp(315px,34vw,465px)}
+@media(max-width:900px){.m-visual-grid{gap:10px}.m-visual-shot{aspect-ratio:1.24}}
+@media(max-width:620px){
+  .m-app-shot{height:clamp(260px,70vw,320px)}
+  .m-art-intro{margin-top:26px}
+  .m-visual-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 1px 12px;scrollbar-width:thin}
+  .m-visual-shot{flex:0 0 min(79vw,315px);aspect-ratio:1.4;scroll-snap-align:start}
+  .m-visual-shot figcaption{font-size:11px}
+  .m-cover{height:275px}
+}
+@media(max-width:350px){.m-app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.m-app-shot{height:255px}.m-visual-shot{flex-basis:82vw}}

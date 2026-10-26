@@ -64,7 +64,7 @@ window.JH_CONTENT = {
       ],
       tags:['PHP','Python','SQL','NLP','Sentiment Analysis','Emotion Classification','UI Implementation','Team Collaboration'],
       note:'BERT tokenization and Softmax belong to the documented project pipeline. The Memory Canvas, AI artwork and souvenir extensions are presented as experience and future concepts, not fully validated production features.',
-      media:{cover:'assets/media/nanao/cover.jpg',screen1:'assets/media/nanao/app-01.png',screen2:'assets/media/nanao/app-02.png',video:'assets/media/nanao/demo.mp4'}
+      media:{cover:'assets/media/nanao/cover.png',screen1:'assets/media/nanao/app-01.png',screen2:'assets/media/nanao/app-02.png',video:'assets/media/nanao/demo.mp4'}
     }
   }
 };
