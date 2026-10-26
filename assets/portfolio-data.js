@@ -49,22 +49,22 @@ window.JH_CONTENT = {
     },
     nanao: {
       slug: 'nanao-ai-guide',
-      name: 'Nan’ao AI Travel Guide',
-      kind: 'AI TOURISM / EXPERIENCE DESIGN',year:'2025',number:'03',
-      tagline: 'Exploring a destination through emotion and discovery.',
-      summary: 'An emotional AI tourism concept designed to connect culture, travel recommendations and guided storytelling.',
-      challenge: 'Make regional tourism discovery feel more personal and expressive than a conventional destination guide.',
-      approach: 'Build a journey around mood, cultural context, recommendations and guided narrative interactions.',
-      contribution: 'Contributed to the experience concept, visitor journey, emotional interaction flow and AI-guided storytelling direction.',
-      result: 'Second Prize in the Rural Cultural and Creative Track at the 2025 Nan’ao County Rural Operator Competition in China.',
+      name: 'MindScape Travel',
+      kind: 'INTERNATIONAL COMPETITION / AI TOURISM', year: '2025–2026', number: '03',
+      tagline: 'Where AI meets emotion-driven travel.',
+      summary: 'An interdisciplinary Raffles University project combining a tourism application with AI-assisted sentiment analysis of travelers’ written reflections. The experience explores emotion-based journey mapping, personalized memories, and design-led visual storytelling.',
+      challenge: 'Conventional tourism applications emphasize destinations and itineraries but often overlook how travelers feel and the memories they associate with places.',
+      approach: 'Built web application interfaces and supporting backend flows with PHP, Python, HTML, CSS, JSON and SQL. Integrated feedback collection and AI-assisted sentiment processing while working with Graphic Design students on the creative direction.',
+      contribution: 'Application Developer & AI Sentiment Analysis Developer. Responsible for implementation, user feedback processing, integration, debugging and technical demonstrations within a cross-disciplinary student team.',
+      result: 'Nan’ao County 2025 Rural Operator Competition Second Prize; DIGITEX 2026 Silver Award; Indigo Design Award 2026 Silver Winner; Kancil Awards 2025 Merit; Times Young Creative Awards 2025 Second Prize (team recognition).',
       process: [
-        ['01','Discover the audience','Frame the destination experience and traveller journey.'],
-        ['02','Design the journey','Connect preferences and cultural stories to the proposed guide.'],
-        ['03','Communicate the vision','Present the concept and user experience for competition.']
+        ['01','Application prototype','Developed the web application and integrated user input with backend data processing.'],
+        ['02','Sentiment analysis','Worked on AI-assisted interpretation of written reflections; the project documentation describes a six-category emotion pipeline.'],
+        ['03','Creative collaboration','Connected the technical prototype to design concepts and prepared exhibition and competition demonstrations.']
       ],
-      tags:['AI Experience','Travel Recommendations','UX Strategy','Storytelling'],
-      note:'Awaiting original visual assets and more detailed project materials.',
-      media:{cover:'assets/media/nanao/cover.jpg',screen1:'assets/media/nanao/01.jpg',screen2:'assets/media/nanao/02.jpg',video:'assets/media/nanao/demo.mp4'}
+      tags:['PHP','Python','SQL','NLP','Sentiment Analysis','Emotion Classification','UI Implementation','Team Collaboration'],
+      note:'BERT tokenization and Softmax belong to the documented project pipeline. The Memory Canvas, AI artwork and souvenir extensions are presented as experience and future concepts, not fully validated production features.',
+      media:{cover:'assets/media/nanao/cover.jpg',screen1:'assets/media/nanao/app-01.png',screen2:'assets/media/nanao/app-02.png',video:'assets/media/nanao/demo.mp4'}
     }
   }
 };

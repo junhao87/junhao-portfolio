@@ -124,3 +124,6 @@
 .tile-art.has-cover .batik-bloom,.tile-art.has-cover .sccci-disc,.tile-art.has-cover .nanao-route,.detail-art.has-cover .batik-bloom,.detail-art.has-cover .sccci-disc,.detail-art.has-cover .nanao-route{opacity:0}
 .mobile-feature.has-cover:after{background:linear-gradient(90deg,#080711e8,#08071177 75%,#08071125)}
 .mobile-feature .real-project-cover{z-index:0}
+
+/* V4.6: MindScape travel tile matches the dark emotional-tourism palette. */
+.art-nanao{background:radial-gradient(circle at 79% 36%,#ad81c76b,transparent 37%),linear-gradient(145deg,#292342,#181a2e);color:#f6eaff}

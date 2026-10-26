@@ -23,12 +23,12 @@
       tags:['Conversational AI','Interaction Design','Testing','Client Project']
     },
     nanao: {
-      name:"Nan’ao AI Travel Guide",category:'INNOVATION · AI TOURISM · 2025',headline:'Discovering places through culture, emotion and curiosity.',
+      name:'MindScape Travel',category:'AI TOURISM · SENTIMENT ANALYSIS · 2025–26',headline:'Where AI meets emotion-driven travel.',
       art:'art-nanao',title:'FEEL THE<br>JOURNEY.',decoration:'<div class="nanao-route"><i></i><i></i><i></i><b>✦</b><b>✦</b></div>',
-      intro:'An emotional AI travel guide concept designed to make Nan’ao’s culture and tourism more personal through expressive journeys and storytelling.',
-      role:'Designed the overall experience concept, user journey, emotional interaction logic, travel recommendation ideas and AI-guided storytelling flow.',
-      outcome:'Second Prize in the Rural Cultural and Creative Track at the 2025 Nan’ao County Rural Operator Competition in China.',
-      tags:['AI Concept','Tourism','UX Strategy','Storytelling']
+      intro:'An interdisciplinary emotional tourism application built with PHP, Python and AI-assisted sentiment analysis to connect traveler reflections with places and personalized memories.',
+      role:'Application Developer & AI Sentiment Analysis Developer. Developed the app and emotion analysis component while collaborating with Graphic Design students.',
+      outcome:'Nan’ao Second Prize, DIGITEX 2026 Silver Award and international creative design recognition.',
+      tags:['PHP','Python','NLP','Sentiment Analysis','Cross-Disciplinary Team']
     }
   };
 
@@ -65,7 +65,7 @@
     img.style.opacity = '0';
     container.appendChild(img); // V4.2: lazy loading needs a connected image.
     img.addEventListener('load', () => { if (!img.naturalWidth) return; img.style.opacity = '1'; container.classList.add('has-cover'); }, {once:true});
-    const candidates = /\/(batik|sccci)\//.test(path) ? [...new Set([path.replace(/\.(jpg|jpeg|png|webp)$/i, '.png'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpeg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')])] : [path];
+    const candidates = /\/(batik|sccci|nanao)\//.test(path) ? [...new Set([path.replace(/\.(jpg|jpeg|png|webp)$/i, '.png'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.jpeg'), path.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')])] : [path];
     let i = 0;
     img.addEventListener('error', () => { if (++i < candidates.length) img.src = candidates[i]; else img.remove(); });
     img.src = candidates[0];
@@ -197,7 +197,7 @@
   const terminalResponses={
     help:terminalHelp,
     about:'CHONG JUN HAO — AI graduate, junior software developer & curious maker.\nBased in Johor Bahru, Malaysia.',
-    projects:'01  Batik Studio — AI generation + 3D garment visualisation\n02  SCCCI AI Theatre — interactive AI client project\n03  Nan’ao AI Travel Guide — AI tourism concept',
+    projects:'01  Batik Studio — AI generation + 3D garment visualisation\n02  SCCCI AI Theatre — interactive AI client project\n03  MindScape Travel — AI emotion-driven tourism',
     skills:'Python, JavaScript, HTML/CSS, PHP, Computer Vision, NLP, AI Model Evaluation, MySQL, UI/UX.',
     experience:'2026—present  Digital Magic Studio (Freelance AI Project Assistant)\n2025—2026      Digital Magic Studio (Intern)\n2023—2024      My Serve Solutions (UI/UX Intern)',
     awards:'DIGITEX Gold 2026 · DIGITEX Silver 2026 · Nan’ao Second Prize 2025 · Indigo Silver 2026 · Kancil Merit 2025',
@@ -227,7 +227,7 @@
     {id:'resume',name:'View Résumé',icon:'i-file',type:'LINK'},
     {id:'batik',name:'Batik Studio',icon:'i-folder',type:'PROJECT'},
     {id:'sccci',name:'SCCCI AI Theatre',icon:'i-folder',type:'PROJECT'},
-    {id:'nanao',name:'Nan’ao AI Travel Guide',icon:'i-folder',type:'PROJECT'}];
+    {id:'nanao',name:'MindScape Travel',icon:'i-folder',type:'PROJECT'}];
   let matching=[],activeMatch=0;
   function drawMatches(){
     const term=$('#launcherInput').value.toLowerCase().trim();
